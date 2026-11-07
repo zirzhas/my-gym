@@ -24,6 +24,7 @@
   --bg:#EDEFEA; --surface:#FFFFFF; --ink:#16191D; --muted:#5C636A; --line:#D5D9D2;
   --a:#2546C4; --a-soft:#E2E7FA; --b:#BF4E1B; --b-soft:#FAE5D9;
   --ok:#1E7448; --ok-soft:#DCF0E4; --bad:#9F3426; --bad-soft:#F6DFDA; --on-accent:#FFFFFF;
+  --gold:#9A6B00; --hp:#B03A2E; --rust:#9C4A22; --hero-bg:#DCE2D4; --c-forca:#B03A2E; --c-vigor:#2E7D4F; --c-nucleo:#8A5A00; --c-resist:#2546C4; --c-disc:#6B3FA0;
   --accent:var(--a); --accent-soft:var(--a-soft);
   --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -32,11 +33,13 @@
   --bg:#111316; --surface:#1A1D21; --ink:#ECEEEA; --muted:#9AA1A8; --line:#2C3036;
   --a:#8099F6; --a-soft:#202945; --b:#F28B58; --b-soft:#3A2317;
   --ok:#62C995; --ok-soft:#163024; --bad:#F2806F; --bad-soft:#3A1D19; --on-accent:#0E1013; color-scheme:dark;
+  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6;
 }}
 :root[data-theme="dark"]{
   --bg:#111316; --surface:#1A1D21; --ink:#ECEEEA; --muted:#9AA1A8; --line:#2C3036;
   --a:#8099F6; --a-soft:#202945; --b:#F28B58; --b-soft:#3A2317;
   --ok:#62C995; --ok-soft:#163024; --bad:#F2806F; --bad-soft:#3A1D19; --on-accent:#0E1013; color-scheme:dark;
+  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6;
 }
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
 body.tB{--accent:var(--b);--accent-soft:var(--b-soft)}
@@ -55,8 +58,8 @@ h1{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:.0
 .modo{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .modo i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
 .modo.cloud i{background:var(--ok)} .modo.erro i{background:var(--bad)}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px}
-.tabs button{border:0;background:transparent;padding:8px 2px;border-radius:7px;font-weight:600;font-size:15px;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px}
+.tabs button{border:0;background:transparent;padding:8px 0;border-radius:7px;font-weight:600;font-size:13.5px;color:var(--muted);min-width:0}
 .tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
 
 h2{font-family:var(--f-display);font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:.04em;margin:0 0 10px;color:var(--muted)}
@@ -68,10 +71,11 @@ section+section{margin-top:26px}
 .tbtn{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;text-align:left;display:grid;gap:2px}
 .tbtn b{font-family:var(--f-display);font-size:28px;line-height:1;text-transform:uppercase}
 .tbtn span{font-size:13px;color:var(--muted)}
-.tbtn[data-t="A"][aria-pressed="true"]{border-color:var(--a);background:var(--a-soft)}
-.tbtn[data-t="A"][aria-pressed="true"] b{color:var(--a)}
-.tbtn[data-t="B"][aria-pressed="true"]{border-color:var(--b);background:var(--b-soft)}
-.tbtn[data-t="B"][aria-pressed="true"] b{color:var(--b)}
+.treinos{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.tbtn[data-c="A"][aria-pressed="true"]{border-color:var(--a);background:var(--a-soft)}
+.tbtn[data-c="A"][aria-pressed="true"] b{color:var(--a)}
+.tbtn[data-c="B"][aria-pressed="true"]{border-color:var(--b);background:var(--b-soft)}
+.tbtn[data-c="B"][aria-pressed="true"] b{color:var(--b)}
 
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .inp,textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;min-height:46px;font-size:16px}
@@ -194,6 +198,98 @@ thead th{border-top:0;font-size:12px;letter-spacing:.06em;text-transform:upperca
 .bar-btns{display:grid;grid-template-columns:2fr 1fr;gap:8px}
 .bar-btns .btn{min-height:50px;font-size:16px}
 
+/* Herói */
+.hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.hero-cv{background:var(--hero-bg);border-radius:10px;padding:4px;line-height:0}
+.hero canvas{width:120px;height:auto;image-rendering:pixelated;display:block}
+.hero-info{min-width:0;display:grid;gap:5px}
+.hero .nome{font-family:var(--f-display);font-weight:700;font-size:28px;line-height:1;text-transform:uppercase;overflow-wrap:anywhere}
+.hero .sub{font-size:14px;color:var(--muted)}
+.xpt{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ouro{font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums}
+.chip.rust{background:transparent;border-color:var(--rust);color:var(--rust)}
+.xpbar,.abar,.hp{height:10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);overflow:hidden;position:relative}
+.xpbar i,.abar i,.hp i{display:block;height:100%;background:var(--gold);border-radius:999px}
+.attrs{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.attr{display:grid;gap:4px}
+.attr .l{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.attr .l b{font-weight:600}
+.attr .l span{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1;font-variant-numeric:tabular-nums}
+.attr small{font-size:12.5px;color:var(--muted);line-height:1.35}
+.attr small.rust{color:var(--rust)}
+.abar{overflow:visible}
+.abar.forca i{background:var(--c-forca)} .abar.vigor i{background:var(--c-vigor)} .abar.nucleo i{background:var(--c-nucleo)} .abar.resist i{background:var(--c-resist)} .abar.disc i{background:var(--c-disc)}
+.abar .pk{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55;margin-left:-1px}
+.boss{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
+.boss .bn{font-family:var(--f-display);font-weight:700;font-size:26px;text-transform:uppercase;line-height:1;color:var(--hp)}
+.boss .bd{font-size:14px;color:var(--muted);font-style:italic}
+.boss .hp{height:14px} .boss .hp i{background:var(--hp)}
+.boss .bl{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.boss small{font-size:12.5px;color:var(--muted)}
+.boss.dead .bn{color:var(--muted);text-decoration:line-through}
+.mis{display:grid;gap:8px}
+.mi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center}
+.mi b{font-weight:600}
+.md{font-size:13px;color:var(--muted)}
+.mi .rw{font-size:13px;color:var(--gold);font-weight:700;text-align:right;white-space:nowrap}
+.mi .pr{grid-column:1/-1;display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mi .pr .xpbar{flex:1;height:6px}
+.mi.ok{border-color:var(--ok);background:var(--ok-soft)}
+.mi.ok .rw{color:var(--ok)} .mi.ok .xpbar i{background:var(--ok)}
+.forja-box{background:var(--surface);border:1px dashed var(--gold);border-radius:12px;overflow:hidden}
+.forja-box .fr{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-top:1px solid var(--line);font-size:14px}
+.forja-box .fr:first-child{border-top:0}
+.forja-box .fr b{font-weight:600}
+.forja-box .fr span{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:700;white-space:nowrap}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.it{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:6px;align-content:start}
+.it .sw{height:26px;border-radius:6px;border:1px solid var(--line)}
+.it b{font-size:14px;font-weight:600;line-height:1.2}
+.it small{font-size:12px;color:var(--muted)}
+.it .btn{width:100%}
+.it.eq{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.it.lock .sw{opacity:.35;filter:grayscale(1)} .it.lock b{color:var(--muted)}
+.btn:disabled{opacity:.6;cursor:default}
+.pers,.tav{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.tav p{margin:0}
+.ficha-bar{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;margin-top:10px;padding:8px 10px;border:1px dashed var(--line);border-radius:10px}
+.ficha-bar .fb-t{flex:1;min-width:0;display:grid}
+.ficha-bar .fb-t .lbl{margin:0;font-size:11px}
+.ficha-bar .fb-t b{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+body.sheet-open{overflow:hidden}
+.sheet{position:fixed;inset:0;z-index:30;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet-in{max-width:640px;margin:0 auto;display:grid;gap:16px}
+.imp-top h2{margin:0 0 4px;color:var(--ink);font-size:28px}
+.imp-top p{margin:0}
+.imp-t{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.imp-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--line)}
+.imp-h small{flex:1;min-width:0}
+.imp-ex .ir{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 12px;border-top:1px solid var(--line)}
+.imp-ex .ir:first-child{border-top:0}
+.imp-ex select{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:7px 6px;font-size:16px;font-weight:600;max-width:140px}
+.imp-ex .exn small{display:block}
+.tag{display:block;margin-top:3px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.tag.novo{color:var(--gold)}
+.imp-keep{display:flex;gap:10px;align-items:flex-start;font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.imp-keep input{width:20px;height:20px;margin:0;flex:none}
+.prev{display:flex;justify-content:center;background:var(--hero-bg);border-radius:10px;padding:6px}
+.prev canvas{width:96px;height:auto;image-rendering:pixelated}
+.fx{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:2px}
+.pers small{display:block;margin-top:6px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:600;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg .sw-btn{width:38px;height:38px;min-height:0;border-radius:50%;padding:0;border:2px solid var(--line)}
+.seg .sw-btn[aria-pressed="true"]{outline:3px solid var(--accent);outline-offset:2px;border-color:var(--surface)}
+.log{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.log>div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;padding:9px 12px;border-top:1px solid var(--line);font-size:14px}
+.log>div:first-child{border-top:0}
+.log time{color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
+.log .lg-capitulo span{font-weight:700;color:var(--accent)}
+.log .lg-chefe span{font-weight:700;color:var(--hp)} .log .lg-nivel span{font-weight:700;color:var(--gold)}
+.chip.xp{background:transparent;border-color:var(--gold);color:var(--gold);font-weight:600}
+.toast{white-space:pre-line}
+
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:20;max-width:calc(100% - 32px);text-align:center}
 body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
 @media (prefers-reduced-motion:no-preference){.toast{animation:in .2s ease-out}@keyframes in{from{opacity:0;transform:translate(-50%,8px)}}}
@@ -208,6 +304,7 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
       <span class="modo" id="modo"><i></i><span id="modoTxt">Carregando…</span></span>
     </div>
     <div class="tabs" role="tablist">
+      <button role="tab" id="tab-heroi" aria-selected="false" data-v="heroi" type="button">Herói</button>
       <button role="tab" id="tab-treino" aria-selected="true" data-v="treino" type="button">Treino</button>
       <button role="tab" id="tab-corpo" aria-selected="false" data-v="corpo" type="button">Corpo</button>
       <button role="tab" id="tab-historico" aria-selected="false" data-v="historico" type="button">Histórico</button>
@@ -215,16 +312,18 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
     </div>
   </header>
 
+  <!-- HERÓI -->
+  <main id="v-heroi" hidden><div id="heroi"></div></main>
+
   <!-- TREINO -->
   <main id="v-treino">
     <div class="editando" id="editBar" hidden><span id="editTxt">Editando treino</span><button class="btn ghost sm" id="cancelEdit" type="button">Cancelar</button></div>
 
     <section>
       <span class="lbl">Treino do dia</span>
-      <div class="treinos">
-        <button class="tbtn" data-t="A" aria-pressed="true" type="button"><b>Treino A</b><span>Costas, ombro e quadril</span></button>
-        <button class="tbtn" data-t="B" aria-pressed="false" type="button"><b>Treino B</b><span>Braços, peito e pernas</span></button>
-      </div>
+      <div class="treinos" id="treinosSel"></div>
+      <div class="ficha-bar" id="fichaBar"></div>
+      <input type="file" id="gymFile" multiple hidden>
     </section>
 
     <section>
@@ -323,6 +422,7 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 </div>
+<div class="sheet" id="impSheet" hidden role="dialog" aria-label="Importar ficha"><div class="sheet-in" id="impBody"></div></div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -354,7 +454,19 @@ const ROT = {
     {k:"eliptico", n:"Elíptico", t:"min", d:15}
   ]}
 };
-const NOMES = {}; Object.values(ROT).forEach(r=>r.ex.forEach(e=>{NOMES[e.k]=e}));
+ROT.A.foco="Costas, ombro e quadril";ROT.B.foco="Braços, peito e pernas";
+const FICHA1={id:"ficha-1",tipo:"ficha",capitulo:1,nome:"Ficha inicial",inicio:"2000-01-01",treinos:ROT};
+const NOMES = {};
+function fichas(){return [FICHA1].concat(regs.filter(r=>r.tipo==="ficha"&&r.treinos).sort((a,b)=>a.capitulo-b.capitulo))}
+function fichaPorId(id){return fichas().find(f=>f.id===id)||FICHA1}
+function fichaAtual(){const l=fichas();return l[l.length-1]}
+function letras(f){return Object.keys(f.treinos).sort()}
+function rotDe(s){return fichaPorId(s.ficha||"ficha-1").treinos[s.treino]||null}
+function exDe(s){const r=rotDe(s);return r?r.ex:[]}
+function RF(){return fichaPorId((F&&F.ficha)||fichaAtual().id).treinos}
+function corLetra(l){return "ABCDEFGHIJ".indexOf(l)%2?"B":"A"}
+function atualizarNomes(){Object.keys(NOMES).forEach(k=>delete NOMES[k]);fichas().forEach(f=>Object.values(f.treinos).forEach(t=>t.ex.forEach(e=>{NOMES[e.k]=e})))}
+function attrDe(e){return e.attr||GRUPO_DE[e.k]||null}
 
 const MEDIDAS = [
   {g:"Peso e bioimpedância", c:[
@@ -386,13 +498,13 @@ function mmss(s){s=Math.max(0,Math.round(s||0));const h=Math.floor(s/3600),m=Mat
 function novoId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
 function ordDesc(a,b){return (b.data+(b.criadoEm||"")).localeCompare(a.data+(a.criadoEm||""))}
 function el(tag,attrs,kids){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==="text")e.textContent=attrs[k];else if(k==="cls")e.className=attrs[k];else e.setAttribute(k,attrs[k])}(kids||[]).forEach(c=>c&&e.appendChild(c));return e}
-let toastT;function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true},2600)}
+let toastT;function toast(m,ms){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true},ms||2600)}
 const caps={};function usar(n){if(!caps[n])caps[n]=(window.claude&&typeof window.claude.use==="function")?window.claude.use(n).catch(()=>null):Promise.resolve(null);return caps[n]}
 function armar(btn,txt,fn){let t;btn.addEventListener("click",()=>{if(!btn.classList.contains("armed")){const orig=btn.textContent;btn.classList.add("armed");btn.textContent=txt;t=setTimeout(()=>{btn.classList.remove("armed");btn.textContent=orig},4000);return}clearTimeout(t);fn()})}
 
 /* ---------- Registros ---------- */
 let regs = lsGet(LS_S,[]);
-const treinos=()=>regs.filter(r=>r.tipo!=="medidas");
+const treinos=()=>regs.filter(r=>r.tipo!=="medidas"&&r.tipo!=="perfil"&&r.tipo!=="ficha");
 const medicoes=()=>regs.filter(r=>r.tipo==="medidas");
 function feito(e,it){if(!it)return false;return e.t==="min"?(pn(it.min)||0)>0:(pn(it.series)||0)>0}
 function itensDe(s){
@@ -447,27 +559,28 @@ function setModo(m){
 /* ---------- Formulário de treino ---------- */
 let F;
 function ultimaCarga(treino,k){
-  for(const s of treinos().filter(s=>s.treino===treino).sort(ordDesc)){
+  for(const s of treinos().sort(ordDesc)){
     const it=itensDe(s)[k]; if(it&&it.carga!=null&&(it.series==null||it.series>0))return it.carga;
   }
   return null;
 }
-function itensPadrao(treino){
-  const o={};
-  ROT[treino].ex.forEach(e=>{
+function itensPadrao(treino,fid){
+  const o={};const tr=fichaPorId(fid||(F&&F.ficha)||fichaAtual().id).treinos[treino];if(!tr)return o;
+  tr.ex.forEach(e=>{
     if(e.t==="min")o[e.k]={min:e.d};
     else if(e.t==="seg")o[e.k]={series:e.s,seg:e.d};
     else{const u=ultimaCarga(treino,e.k);o[e.k]={series:e.s,reps:e.r,carga:u!=null?u:(e.d!=null?e.d:null)}}
   });
   return o;
 }
-function formVazio(t){t=t||"A";return {treino:t,data:hoje(),duracao:"",fisico:null,mental:null,med:null,itens:itensPadrao(t),voltas:[],obs:"",editId:null}}
+function formVazio(t){const f=fichaAtual();if(!t||!f.treinos[t])t=letras(f)[0];return {ficha:f.id,treino:t,data:hoje(),duracao:"",fisico:null,mental:null,med:null,itens:itensPadrao(t,f.id),voltas:[],obs:"",editId:null}}
+function proximaLetra(fid,l){const ls=letras(fichaPorId(fid));const i=ls.indexOf(l);return ls[(i+1)%ls.length]}
 function salvarRascunho(){ if(!F.editId) lsSet(LS_D,F); }
 
 function metaTxt(e){
   if(e.t==="min")return "Meta "+e.d+" min";
   if(e.t==="seg")return "Meta "+e.s+" × "+e.d+" s";
-  return "Meta "+e.s+" × "+e.r+(e.nota?" "+e.nota:"")+" · 30 s descanso"+(e.t==="pc"?" · peso corporal":"");
+  return "Meta "+e.s+" × "+e.r+(e.nota?" "+e.nota:"")+" · "+(e.desc||30)+" s descanso"+(e.t==="pc"?" · peso corporal":"");
 }
 function stepper(lbl,val,passo,cls,dec,on){
   const inp=el("input",{type:"text",inputmode:dec?"decimal":"numeric",cls:cls,"aria-label":lbl});
@@ -481,7 +594,7 @@ function stepper(lbl,val,passo,cls,dec,on){
 function renderEx(){
   const list=$("#exList"); list.textContent="";
   const t=lsGet(LS_T,null);
-  ROT[F.treino].ex.forEach(e=>{
+  (RF()[F.treino]||{ex:[]}).ex.forEach(e=>{
     if(!F.itens[e.k])F.itens[e.k]=itensPadrao(F.treino)[e.k];
     const it=F.itens[e.k];
     const row=el("div",{cls:"exrow","data-k":e.k});
@@ -510,8 +623,12 @@ function renderEx(){
   tick();
 }
 function renderForm(){
-  document.body.classList.toggle("tB",F.treino==="B");
-  document.querySelectorAll(".tbtn").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===F.treino)));
+  document.body.classList.toggle("tB",corLetra(F.treino)==="B");
+  const tsel=$("#treinosSel");tsel.textContent="";const TR=RF();
+  Object.keys(TR).sort().forEach(l=>{const b=el("button",{cls:"tbtn",type:"button","data-c":corLetra(l),"aria-pressed":String(l===F.treino)},[el("b",{text:"Treino "+l}),el("span",{text:TR[l].foco||focoDe(TR[l].ex)})]);
+    b.addEventListener("click",()=>{if(F.treino===l)return;F.treino=l;const pad=itensPadrao(l);TR[l].ex.forEach(e=>{if(!F.itens[e.k]||!F.editId)F.itens[e.k]=pad[e.k]});const t=lsGet(LS_T,null);if(t){t.atual=proximoFeito(null);lsSet(LS_T,t)}salvarRascunho();renderForm()});
+    tsel.appendChild(b)});
+  renderFichaBar();
   $("#data").value=F.data||""; $("#duracao").value=fin(F.duracao); $("#obs").value=F.obs||"";
   renderEx();
   document.querySelectorAll(".nota").forEach(box=>{
@@ -532,7 +649,7 @@ function renderNotas(){
 
 /* ---------- Cronômetro com voltas ---------- */
 function proximoFeito(depoisDe){
-  const l=ROT[F.treino].ex;const i=depoisDe?l.findIndex(e=>e.k===depoisDe):-1;
+  const l=(RF()[F.treino]||{ex:[]}).ex;const i=depoisDe?l.findIndex(e=>e.k===depoisDe):-1;
   for(let j=i+1;j<l.length;j++){if(feito(l[j],F.itens[l[j].k]))return l[j].k}
   return null;
 }
@@ -560,7 +677,7 @@ function parar(silencioso){
 function renderBarSelect(){
   const t=lsGet(LS_T,null), sel=$("#barAtual"); sel.textContent="";
   sel.appendChild(el("option",{value:"",text:"Nenhum (descanso)"}));
-  ROT[F.treino].ex.forEach(e=>{const o=el("option",{value:e.k,text:e.n});if(t&&t.atual===e.k)o.selected=true;sel.appendChild(o)});
+  (RF()[F.treino]||{ex:[]}).ex.forEach(e=>{const o=el("option",{value:e.k,text:e.n});if(t&&t.atual===e.k)o.selected=true;sel.appendChild(o)});
   if(t&&!t.atual)sel.value="";
 }
 $("#barAtual").addEventListener("change",e=>{
@@ -607,18 +724,12 @@ setInterval(()=>{if(lsGet(LS_T,null))tick()},1000);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- Eventos do treino ---------- */
-document.querySelectorAll(".tbtn").forEach(b=>b.addEventListener("click",()=>{
-  if(F.treino===b.dataset.t)return; F.treino=b.dataset.t;
-  const pad=itensPadrao(F.treino); ROT[F.treino].ex.forEach(e=>{if(!F.itens[e.k]||!F.editId)F.itens[e.k]=pad[e.k]});
-  const t=lsGet(LS_T,null);if(t){t.atual=proximoFeito(null);lsSet(LS_T,t)}
-  salvarRascunho(); renderForm();
-}));
 $("#data").addEventListener("input",e=>{F.data=e.target.value;salvarRascunho();$("#q-data").classList.remove("miss")});
 $("#duracao").addEventListener("input",e=>{F.duracao=pn(e.target.value);salvarRascunho();$("#q-dur").classList.remove("miss")});
 $("#obs").addEventListener("input",e=>{F.obs=e.target.value;salvarRascunho()});
 document.querySelectorAll(".sn button").forEach(b=>b.addEventListener("click",()=>{F.med=b.dataset.v==="1";salvarRascunho();renderNotas()}));
 $("#limpar").addEventListener("click",()=>{if(lsGet(LS_T,null)){toast("Finalize o cronômetro antes de limpar.");return}F=formVazio(F.treino);lsSet(LS_D,null);document.querySelectorAll(".q").forEach(q=>q.classList.remove("miss"));renderForm();window.scrollTo(0,0)});
-$("#cancelEdit").addEventListener("click",()=>{const r=lsGet(LS_D,null);F=r&&r.itens?Object.assign(formVazio(r.treino),r,{editId:null}):formVazio();renderForm();mostrar("historico")});
+$("#cancelEdit").addEventListener("click",()=>{const r=lsGet(LS_D,null);F=r&&r.itens&&(r.ficha||"ficha-1")===fichaAtual().id?Object.assign(formVazio(r.treino),r,{editId:null}):formVazio();renderForm();mostrar("historico")});
 
 $("#salvar").addEventListener("click",async()=>{
   if(lsGet(LS_T,null))parar(true);
@@ -635,17 +746,17 @@ $("#salvar").addEventListener("click",async()=>{
     document.getElementById(faltas[0]).scrollIntoView({behavior:"smooth",block:"center"});return;
   }
   const itens={};
-  ROT[F.treino].ex.forEach(e=>{const it=F.itens[e.k]||{};
+  (RF()[F.treino]||{ex:[]}).ex.forEach(e=>{const it=F.itens[e.k]||{};
     if(e.t==="min")itens[e.k]={min:pn(it.min)||0};
     else if(e.t==="seg")itens[e.k]={series:Math.round(pn(it.series)||0),seg:pn(it.seg)};
     else itens[e.k]={series:Math.round(pn(it.series)||0),reps:pn(it.reps)==null?null:Math.round(pn(it.reps)),carga:pn(it.carga)};
   });
   const antigo=F.editId?regs.find(s=>s.id===F.editId):null;
-  const s={id:F.editId||novoId(),tipo:"treino",data:F.data,treino:F.treino,duracao:pn(F.duracao),fisico:F.fisico,mental:F.mental,medicacao:!!F.med,itens:itens,voltas:(F.voltas||[]).filter(v=>v&&v.k&&v.s>0),obs:(F.obs||"").trim(),criadoEm:antigo?antigo.criadoEm:new Date().toISOString()};
-  const btn=$("#salvar");btn.disabled=true;await store.put(s);btn.disabled=false;
+  const s={id:F.editId||novoId(),tipo:"treino",ficha:F.ficha||fichaAtual().id,data:F.data,treino:F.treino,duracao:pn(F.duracao),fisico:F.fisico,mental:F.mental,medicacao:!!F.med,itens:itens,voltas:(F.voltas||[]).filter(v=>v&&v.k&&v.s>0),obs:(F.obs||"").trim(),criadoEm:antigo?antigo.criadoEm:new Date().toISOString()};
+  const antesR=motor();const btn=$("#salvar");btn.disabled=true;await store.put(s);btn.disabled=false;
   const eraEdicao=!!F.editId;
-  lsSet(LS_D,null);F=formVazio(s.treino==="A"?"B":"A");
-  renderForm();renderTudo();toast(eraEdicao?"Treino atualizado":"Treino salvo. Próximo: Treino "+F.treino);mostrar("historico");
+  lsSet(LS_D,null);F=formVazio(s.ficha===fichaAtual().id?proximaLetra(s.ficha,s.treino):null);
+  renderForm();renderTudo();const rec=resumoRecompensa(antesR,motor());toast((eraEdicao?"Treino atualizado":"Treino salvo")+(rec?"\n"+rec:""),rec?5000:2600);mostrar(eraEdicao?"historico":"heroi");window.scrollTo(0,0);
 });
 
 /* ---------- Corpo ---------- */
@@ -677,7 +788,7 @@ $("#mSalvar").addEventListener("click",async()=>{
   if(!Object.keys(M.valores).length){toast("Preencha pelo menos uma medida");return}
   const antigo=M.editId?regs.find(s=>s.id===M.editId):null;
   const r={id:M.editId||novoId(),tipo:"medidas",data:M.data,valores:Object.assign({},M.valores),obs:(M.obs||"").trim(),criadoEm:antigo?antigo.criadoEm:new Date().toISOString()};
-  await store.put(r);const ed=!!M.editId;M=medVazio();lsSet(LS_M,null);renderMForm();renderTudo();toast(ed?"Medidas atualizadas":"Medidas salvas");
+  const antesR=motor();await store.put(r);const ed=!!M.editId;M=medVazio();lsSet(LS_M,null);renderMForm();renderTudo();const rec=resumoRecompensa(antesR,motor());toast((ed?"Medidas atualizadas":"Medidas salvas")+(rec?"\n"+rec:""),rec?4500:2600);
   $("#mEvol").scrollIntoView({behavior:"smooth",block:"start"});
 });
 function renderCorpo(){
@@ -706,14 +817,14 @@ function renderCorpo(){
 }
 
 /* ---------- Histórico ---------- */
-function renderLista(){
-  const box=$("#lista");box.textContent="";
+function renderLista(R){
+  R=R||motor();const box=$("#lista");box.textContent="";
   const ord=treinos().sort(ordDesc);
   if(!ord.length){box.appendChild(el("div",{cls:"vazio"},[el("b",{text:"Nenhum treino registrado ainda"}),el("span",{text:"Na aba Treino, escolha A ou B, inicie o cronômetro, ajuste séries, repetições e cargas e toque em Salvar treino."})]));return}
   ord.forEach(s=>{
     const its=itensDe(s);
     const tab=el("div",{cls:"itab"},["Exercício","Séries","Carga","Tempo"].map((h,i)=>el("span",{cls:"hd"+(i?" r":""),text:h})));
-    const ks=(ROT[s.treino]?ROT[s.treino].ex.map(e=>e.k):[]);Object.keys(its).forEach(k=>{if(!ks.includes(k))ks.push(k)});
+    const ks=exDe(s).map(e=>e.k);Object.keys(its).forEach(k=>{if(!ks.includes(k))ks.push(k)});
     ks.forEach(k=>{const e=NOMES[k]||{n:k,t:"kg"};const it=its[k];const tp=tempoSessao(s,k);
       let sr="—",cg="—",mu=false;
       if(!it){mu=true}
@@ -728,14 +839,14 @@ function renderLista(){
     const ed=el("button",{cls:"btn sm",type:"button",text:"Editar"});
     ed.addEventListener("click",()=>{
       if(lsGet(LS_T,null)){toast("Finalize o cronômetro antes de editar outro treino.");return}
-      const pad=itensPadrao(s.treino);const it2={};ROT[s.treino].ex.forEach(e=>{const o=its[e.k];it2[e.k]=o?Object.assign({},pad[e.k],o):Object.assign({},pad[e.k])});
-      F={treino:s.treino,data:s.data,duracao:s.duracao,fisico:s.fisico,mental:s.mental,med:s.medicacao,itens:it2,voltas:(s.voltas||[]).slice(),obs:s.obs||"",editId:s.id};
+      const fid=s.ficha||"ficha-1";const pad=itensPadrao(s.treino,fid);const it2={};exDe(s).forEach(e=>{const o=its[e.k];it2[e.k]=o?Object.assign({},pad[e.k],o):Object.assign({},pad[e.k])});
+      F={ficha:fid,treino:s.treino,data:s.data,duracao:s.duracao,fisico:s.fisico,mental:s.mental,med:s.medicacao,itens:it2,voltas:(s.voltas||[]).slice(),obs:s.obs||"",editId:s.id};
       document.querySelectorAll(".q").forEach(q=>q.classList.remove("miss"));renderForm();mostrar("treino");window.scrollTo(0,0);
     });
     const del=el("button",{cls:"btn sm danger",type:"button",text:"Excluir"});armar(del,"Confirmar exclusão",async()=>{await store.del(s.id);renderTudo();toast("Treino excluído")});
     box.appendChild(el("article",{cls:"card"},[
-      el("div",{cls:"h"},[el("span",{cls:"pill "+s.treino,text:s.treino}),el("span",{cls:"d",text:fmtData(s.data)}),el("span",{cls:"dur",text:num(s.duracao,0)+" min"})]),
-      el("div",{cls:"chips"},[el("span",{cls:"chip",text:"Físico "+s.fisico+"/5"}),el("span",{cls:"chip",text:"Mental "+s.mental+"/5"}),el("span",{cls:"chip "+(s.medicacao?"ok":"no"),text:s.medicacao?"Medicação: sim":"Medicação: não"}),s.sync===false&&store.mode==="cloud"?el("span",{cls:"chip",text:"Aguardando envio"}):null]),
+      el("div",{cls:"h"},[el("span",{cls:"pill "+corLetra(s.treino),text:s.treino}),el("span",{cls:"d",text:fmtData(s.data)}),el("span",{cls:"dur",text:num(s.duracao,0)+" min"})]),
+      el("div",{cls:"chips"},[el("span",{cls:"chip",text:"Físico "+s.fisico+"/5"}),el("span",{cls:"chip",text:"Mental "+s.mental+"/5"}),el("span",{cls:"chip "+(s.medicacao?"ok":"no"),text:s.medicacao?"Medicação: sim":"Medicação: não"}),R.sess[s.id]?el("span",{cls:"chip xp",text:"+"+R.sess[s.id].xp+" XP"}):null,s.sync===false&&store.mode==="cloud"?el("span",{cls:"chip",text:"Aguardando envio"}):null]),
       det,el("div",{cls:"act"},[ed,del])
     ]));
   });
@@ -756,7 +867,7 @@ function renderResumo(){
 
   const linhas=[];
   Object.values(NOMES).forEach(e=>{
-    const doTipo=ts.filter(s=>ROT[s.treino]&&ROT[s.treino].ex.some(x=>x.k===e.k));if(!doTipo.length)return;
+    const doTipo=ts.filter(s=>exDe(s).some(x=>x.k===e.k));if(!doTipo.length)return;
     const asc=doTipo.slice().sort((a,b)=>-ordDesc(a,b));
     const feitos=asc.filter(s=>{const it=itensDe(s)[e.k];if(!it)return false;return e.t==="min"?(it.min||0)>0:(it.series==null||it.series>0)});
     const tempos=feitos.map(s=>tempoSessao(s,e.k)).filter(x=>x>0);
@@ -780,7 +891,7 @@ const csv=rows=>"﻿"+rows.map(r=>r.map(esc).join(";")).join("\r\n");
 $("#expCsv").addEventListener("click",()=>{
   const ts=treinos().sort((a,b)=>-ordDesc(a,b));if(!ts.length){toast("Nenhum treino para exportar");return}
   const rows=[["Data","Treino","Duração total (min)","Satisfação física","Satisfação mental","Medicação","Exercício","Feito","Séries","Repetições por série","Carga (kg)","Minutos","Segundos","Tempo no exercício (min:s)","Observações"]];
-  ts.forEach(s=>{const its=itensDe(s);const ks=ROT[s.treino]?ROT[s.treino].ex.map(e=>e.k):Object.keys(its);
+  ts.forEach(s=>{const its=itensDe(s);const ks=rotDe(s)?exDe(s).map(e=>e.k):Object.keys(its);
     ks.forEach((k,i)=>{const e=NOMES[k]||{n:k,t:"kg"};const it=its[k]||{};const f=e.t==="min"?(it.min||0)>0:(it.series==null?!!its[k]:it.series>0);const tp=tempoSessao(s,k);
       rows.push([s.data,s.treino,dec(s.duracao),s.fisico,s.mental,s.medicacao?"Sim":"Não",e.n,f?"Sim":"Não",it.series==null?"":it.series,it.reps==null?"":it.reps,dec(it.carga),dec(it.min),dec(it.seg),tp?mmss(tp):"",i===0?(s.obs||""):""])})});
   baixar("treinos-"+hoje()+".csv",csv(rows));
@@ -804,9 +915,12 @@ $("#arquivo").addEventListener("change",async e=>{
     if(!Array.isArray(lista))throw new Error();
     let n=0;
     for(const s of lista){
-      if(!s||typeof s.data!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(s.data))continue;
+      if(!s)continue;
+      if(s.tipo!=="perfil"&&s.tipo!=="ficha"&&(typeof s.data!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(s.data)))continue;
       const id=String(s.id||novoId()).replace(/[^A-Za-z0-9_-]/g,"").slice(0,60)||novoId();
       const criadoEm=String(s.criadoEm||new Date().toISOString());
+      if(s.tipo==="ficha"&&s.treinos&&s.id){await store.put(Object.assign({},s));n++;continue}
+      if(s.tipo==="perfil"){const p=Object.assign({},PERFIL_PADRAO,s,{id:"perfil",tipo:"perfil"});await store.put(p);n++;continue}
       if(s.tipo==="medidas"){if(typeof s.valores!=="object"||!s.valores)continue;const v={};Object.keys(s.valores).forEach(k=>{if(MCAMPOS[k]&&pn(s.valores[k])!=null)v[k]=pn(s.valores[k])});await store.put({id,tipo:"medidas",data:s.data,valores:v,obs:String(s.obs||""),criadoEm});n++;continue}
       if(s.treino!=="A"&&s.treino!=="B")continue;
       const r={id,tipo:"treino",data:s.data,treino:s.treino,duracao:pn(s.duracao),fisico:pn(s.fisico),mental:pn(s.mental),medicacao:!!s.medicacao,obs:String(s.obs||""),criadoEm,voltas:Array.isArray(s.voltas)?s.voltas.filter(v=>v&&NOMES[v.k]&&pn(v.s)>0).map(v=>({k:v.k,s:pn(v.s)})):[]};
@@ -817,16 +931,613 @@ $("#arquivo").addEventListener("change",async e=>{
   }catch(err){toast("Arquivo inválido. Use um backup JSON gerado por esta página.")}
 });
 
+/* ================== CAMADA DE JOGO (RPG) ================== */
+const DIA=864e5;
+function dn(s){const[y,m,d]=s.split("-").map(Number);return Math.round(Date.UTC(y,m-1,d)/DIA)}
+function ds(n){const d=new Date(n*DIA);return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0")}
+function dow(n){return new Date(n*DIA).getUTCDay()}
+function segunda(n){return n-((dow(n)+6)%7)}
+function mesKey(n){return ds(n).slice(0,7)}
+function fmtCurta(n){const s=ds(n);return s.slice(8,10)+"/"+s.slice(5,7)}
+function rng(seed){let h=2166136261;for(const ch of seed){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return()=>{h+=0x6D2B79F5;let t=h;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+
+const GRUPO={forca:["remada_baixa","puxada_frente","elevacao_lateral","rosca_direta","triceps_frances","crucifixo_inclinado"],vigor:["adutora","abdutora","agachamento","flexao_plantar","afundo"],nucleo:["abdominal_solo","elevacao_pernas","prancha"],resist:["esteira","eliptico"]};
+const GRUPO_DE={};Object.keys(GRUPO).forEach(g=>GRUPO[g].forEach(k=>{GRUPO_DE[k]=g}));
+const ATTR={
+  forca:{n:"Força",d:"Remada, puxada, elevação lateral, rosca, tríceps e crucifixo",g:0.6,car:14,taxa:0.15},
+  vigor:{n:"Vigor",d:"Adutora, abdutora, agachamento, afundo e panturrilha",g:0.6,car:14,taxa:0.15},
+  nucleo:{n:"Núcleo",d:"Abdominal, elevação das pernas e prancha",g:0.8,car:14,taxa:0.15},
+  resist:{n:"Resistência",d:"Minutos de esteira e elíptico",g:0.45,car:7,taxa:0.3},
+  disc:{n:"Disciplina",d:"Semanas com 3 treinos ou mais"}
+};
+const TITULOS=[[1,"Recruta","Recruta"],[5,"Escudeiro","Escudeira"],[10,"Soldado","Soldada"],[15,"Cavaleiro","Cavaleira"],[20,"Veterano","Veterana"],[25,"Capitão","Capitã"],[30,"Campeão","Campeã"],[40,"Lorde","Dama"],[50,"Lenda","Lenda"]];
+function ehF(){const p=regs.find(r=>r.tipo==="perfil");return !!(p&&p.genero==="F")}
+function G(m,f){return ehF()?f:m}
+function titulo(n){let t=TITULOS[0];TITULOS.forEach(x=>{if(n>=x[0])t=x});return ehF()?t[2]:t[1]}
+function nivelDe(xp){let n=1,acum=0;while(n<50){const req=Math.round(100*Math.pow(n,1.6));if(xp<acum+req)return{n,base:acum,req,dentro:xp-acum};acum+=req;n++}return{n:50,base:acum,req:0,dentro:0}}
+
+const MISSOES={
+  meta:{fx:()=>G("Todo cavaleiro leal comparece três vezes por semana.","Toda cavaleira leal comparece três vezes por semana."),n:"Meta da semana",d:"Treinar 3 vezes",xp:100,ouro:30,chk:s=>[s.n,3]},
+  quatro:{fx:()=>G("Só os mais dedicados vão além do juramento.","Só as mais dedicadas vão além do juramento."),n:"Além do dever",d:"Treinar 4 vezes na semana",xp:80,ouro:25,chk:s=>[s.n,4]},
+  dupla:{fx:()=>G("Um guerreiro completo treina de cima a baixo.","Uma guerreira completa treina de cima a baixo."),n:"Rodízio completo",d:"Fazer todos os treinos da ficha",xp:50,ouro:20,chk:s=>[s.letras.size,s.totLetras||2]},
+  impecavel:{fx:()=>G("Mostre ao mestre de armas que você está pronto.","Mostre ao mestre de armas que você está pronta."),n:"Treino impecável",d:"Um treino com tudo completo",xp:50,ouro:20,chk:s=>[s.comp,1]},
+  perfeicao:{fx:()=>G("Ninguém no quartel duvida mais de você, veterano.","Ninguém no quartel duvida mais de você, veterana."),n:"Dupla perfeição",d:"Dois treinos com tudo completo",xp:50,ouro:20,chk:s=>[s.comp,2]},
+  cardio:{fx:()=>G("Até o corcel cansa antes de um herói bem treinado.","Até o corcel cansa antes de uma heroína bem treinada."),n:"Fôlego de corcel",d:"75 min de esteira e elíptico",xp:50,ouro:20,chk:s=>[Math.round(s.cardio),75]},
+  nucleo:{fx:()=>G("Firme como a muralha do castelo, soldado.","Firme como a muralha do castelo, soldada."),n:"Muralha",d:"Núcleo trabalhado em 3 treinos",xp:50,ouro:20,chk:s=>[s.nucleoSess,3]},
+  recorde:{fx:()=>G("Os bardos querem cantar o seu feito, campeão.","Os bardos querem cantar o seu feito, campeã."),n:"Novo recorde",d:"Bater o recorde de carga em um exercício",xp:50,ouro:20,chk:s=>[s.prs,1]},
+  semFalta:{fx:()=>G("Disciplinado como poucos.","Disciplinada como poucas."),n:"Nada para trás",d:"3 treinos sem pular exercício",xp:60,ouro:25,chk:s=>[s.semPulo,3]}
+};
+function missoesDaSemana(key){const r=rng("sem"+key);const pool=Object.keys(MISSOES).filter(k=>k!=="meta");for(let i=pool.length-1;i>0;i--){const j=Math.floor(r()*(i+1));const t=pool[i];pool[i]=pool[j];pool[j]=t}return["meta",pool[0],pool[1]]}
+
+const CHEFES=[
+  {n:"Troll da Ponte",d:"Cobra pedágio de quem quer atravessar. Paga-se em séries."},
+  {n:"Cavaleiro Negro",d:"Não recua. Só cai diante de quem aparece toda semana."},
+  {f:1,n:"Bruxa do Pântano",d:"Suas maldições pesam nas pernas de quem falta ao treino."},
+  {n:"Gigante de Pedra",d:"Lento e enorme. Vence quem acumula golpes."},
+  {n:"Senhor dos Lobos",d:"Caça em matilha. Treinos seguidos quebram o cerco."},
+  {n:"Wyvern das Escarpas",d:"Ataca do alto. Fôlego é a melhor defesa."},
+  {n:"Necromante",d:"Ressuscita a preguiça. Disciplina é o antídoto."},
+  {n:"Golem de Ferro",d:"Feito de cargas esquecidas. Desmonta com repetições."},
+  {n:"Rei Goblin",d:"Esperto e covarde. Foge de quem completa a ficha."},
+  {f:1,n:"Hidra de Três Cabeças",d:"Para cada treino pulado, nasce outra cabeça."},
+  {n:"Lorde Vampiro",d:"Drena energia à noite. Durma bem e volte amanhã."},
+  {n:"Dragão Ancião",d:"O último da era. Exige um mês inteiro de constância."}
+];
+const METAIS={ferro:"#8D949B",aco:"#BCC6CF",ouro:"#D9A92A"};
+const ARMADURAS=[];
+[["ferro","de ferro","Capa carmesim","#8E1B1B"],["aco","de aço","Capa real","#2E3F8F"],["ouro","de ouro","Capa dourada","#B8901E"]].forEach(([m,suf,capa,cor])=>{
+  [["elmo","Elmo"],["peitoral","Peitoral"],["ombreiras","Ombreiras"],["manoplas","Manoplas"],["grevas","Grevas"]].forEach(([slot,n])=>ARMADURAS.push({id:slot+"_"+m,slot,n:n+" "+suf,m}));
+  ARMADURAS.push({id:"capa_"+m,slot:"capa",n:capa,cor});
+});
+const ARM_POR_ID={};ARMADURAS.forEach(a=>{ARM_POR_ID[a.id]=a});
+const ITENS=[
+  {id:"tunica_linho",slot:"roupa",n:"Túnica de linho",p:0,cor:"#9A9184"},
+  {id:"tunica_verde",slot:"roupa",n:"Túnica verde-floresta",p:120,cor:"#3F6B3A"},
+  {id:"tunica_azul",slot:"roupa",n:"Túnica azul-real",p:180,cor:"#2F4FA8"},
+  {id:"tunica_vinho",slot:"roupa",n:"Túnica cor de vinho",p:220,cor:"#7A2537"},
+  {id:"calca_marrom",slot:"calca",n:"Calça de lã marrom",p:0,cor:"#6B4A2F"},
+  {id:"calca_preta",slot:"calca",n:"Calça preta",p:90,cor:"#2A2A2E"},
+  {id:"calca_azul",slot:"calca",n:"Calça azul-escura",p:120,cor:"#273A63"},
+  {id:"luvas_couro",slot:"luvas",n:"Luvas de couro",p:80,cor:"#7B5233"},
+  {id:"luvas_algodao",slot:"luvas",n:"Luvas de algodão",p:60,cor:"#E8E4DA"},
+  {id:"meias_brancas",slot:"meias",n:"Meias brancas",p:0,cor:"#E8E4DA"},
+  {id:"meias_listradas",slot:"meias",n:"Meias listradas",p:50,cor:"#C0392B",cor2:"#F2EFE6"},
+  {id:"meias_verdes",slot:"meias",n:"Meias verdes",p:50,cor:"#3F6B3A"},
+  {id:"oculos_redondos",slot:"oculos",n:"Óculos redondos",p:100,cor:"#2B2B2B"},
+  {id:"oculos_escuros",slot:"oculos",n:"Óculos escuros",p:150,cor:"#141414"},
+  {id:"monoculo",slot:"oculos",n:"Monóculo dourado",p:250,cor:"#D4A017"}
+];
+const ITENS_POR_ID={};ITENS.forEach(i=>{ITENS_POR_ID[i.id]=i});
+const SLOTS_NOME={roupa:"Roupa",calca:"Calça",luvas:"Luvas",meias:"Meias",oculos:"Óculos"};
+const OPCIONAIS=["luvas","oculos"];
+const CLASSES=[["guerreiro","Guerreiro","Guerreira"],["paladino","Paladino","Paladina"],["patrulheiro","Patrulheiro","Patrulheira"]];
+const nomeClasse=c=>ehF()?c[2]:c[1];
+const PELES=["#F1C9A5","#D9A37A","#A86F4B","#6E4630"];
+const CABELOS=["#1E1611","#5A3A22","#8A5A33","#C9A15B","#8F2F1E","#BDBDBD"];
+
+const PERFIL_PADRAO={id:"perfil",tipo:"perfil",nome:"",genero:"M",classe:"guerreiro",pele:0,cabelo:0,cabTam:"curto",cabTex:"liso",cabPreso:false,compras:[],equip:{roupa:"tunica_linho",calca:"calca_marrom",meias:"meias_brancas",luvas:null,oculos:null,elmo:null,peitoral:null,ombreiras:null,manoplas:null,grevas:null,capa:null},pausas:[]};
+function perfil(){const p=regs.find(r=>r.tipo==="perfil")||{};return Object.assign({},PERFIL_PADRAO,p,{compras:(p.compras||[]).slice(),pausas:(p.pausas||[]).map(x=>Object.assign({},x)),equip:Object.assign({},PERFIL_PADRAO.equip,p.equip||{})})}
+async function salvarPerfil(p){p.id="perfil";p.tipo="perfil";p.atualizadoEm=new Date().toISOString();await store.put(p);renderHeroi()}
+
+function fracEx(e,it){
+  if(!it)return 0;
+  if(e.t==="min")return Math.min(1.5,(pn(it.min)||0)/e.d);
+  if(it.series==null&&it.reps==null)return it.carga!=null?1:0;
+  if(e.t==="seg")return Math.min(1,((pn(it.series)||0)*(pn(it.seg)||0))/(e.s*e.d));
+  const r=it.reps==null?e.r:pn(it.reps);
+  return Math.min(1,((pn(it.series)||0)*r)/(e.s*e.r));
+}
+
+function motor(){
+  const P=perfil();
+  const ts=treinos().filter(s=>s.data&&rotDe(s)).sort((a,b)=>-ordDesc(a,b));
+  const ms=medicoes().filter(m=>m.data);
+  const H=dn(hoje());
+  const R={xp:0,ouro:0,ev:[],sess:{},attrs:{},semana:null,chefe:null,chefes:[],forja:[],drops:[],medMes:false,pausaHoje:null,derrotados:0};
+  ["forca","vigor","nucleo","resist","disc"].forEach(a=>{R.attrs[a]={v:10,pico:10,sem:0}});
+  const pausa=new Set();P.pausas.forEach(p=>{for(let n=dn(p.ini);n<=dn(p.fim);n++)pausa.add(n)});
+  R.pausaHoje=P.pausas.find(p=>dn(p.ini)<=H&&H<=dn(p.fim))||null;
+  const ev=(n,txt,tipo)=>R.ev.push({n,txt,tipo});
+  const addXp=(n,x)=>{const a=nivelDe(R.xp).n;R.xp+=x;const b=nivelDe(R.xp).n;if(b>a)ev(n,"Alcançou o nível "+b+" ("+titulo(b)+")","nivel")};
+  const porDia={};ts.forEach(s=>{const n=dn(s.data);(porDia[n]=porDia[n]||[]).push(s)});
+  const capDia={};fichas().forEach(f=>{if(f.capitulo>1&&f.inicio){const n=dn(f.inicio);(capDia[n]=capDia[n]||[]).push(f)}});
+  const medDia={};ms.forEach(m=>{const n=dn(m.data);(medDia[n]=medDia[n]||[]).push(m)});
+  const primeiro=ts.length?dn(ts[0].data):H;
+  const ini=segunda(Math.min(primeiro,H));
+  const mes0=mesKey(primeiro);
+  const idxMes=k=>{const[a,b]=k.split("-").map(Number),[a0,b0]=mes0.split("-").map(Number);return Math.max(0,(a-a0)*12+(b-b0))};
+  const chefeDe=k=>{const i=idxMes(k);const c=CHEFES[i%CHEFES.length];return{nome:c.n,d:c.d,f:!!c.f,hp:1000+100*Math.floor(i/CHEFES.length)}};
+  const hist={},maxC={};let comecou=false;
+  const novaSemana=n=>({ini:n,n:0,letras:new Set(),totLetras:0,comp:0,cardio:0,nucleoSess:0,semPulo:0,prs:0,forjas:0,pausaDias:0});
+  let sem=novaSemana(ini),mes={k:mesKey(ini),dano:0,derrotado:false,med:false};
+  function sessao(n,s){
+    const its=itensDe(s),ex=exDe(s);
+    const c=ex.reduce((a,e)=>a+Math.min(1,fracEx(e,its[e.k])),0)/ex.length;
+    let xp=50+Math.round(c*100),ouro=5,pulou=false,nuc=false;
+    const stim={forca:0,vigor:0,nucleo:0,resist:0};
+    ex.forEach(e=>{
+      const it=its[e.k],f=fracEx(e,it),g=attrDe(e);
+      if(f<=0)pulou=true;
+      if(g&&f>0)stim[g]+=g==="resist"?f:Math.min(1,f);
+      if(g==="nucleo"&&f>0)nuc=true;
+      if(e.t==="min"&&it)sem.cardio+=pn(it.min)||0;
+      if((e.t==="kg"||e.t==="pc")&&it&&it.carga!=null&&f>0){
+        const cg=it.carga,h=hist[e.k]||(hist[e.k]=[]);
+        const ok=(it.series==null||it.series>=e.s)&&(it.reps==null||it.reps>=e.r);
+        if(maxC[e.k]!=null&&cg>maxC[e.k]){xp+=25;if(g)stim[g]+=0.5;sem.prs++;ev(n,"Recorde de carga em "+e.n+": "+num(cg)+" kg (+25 XP)","recorde")}
+        if(h.length>=2){const a=h[h.length-1],b=h[h.length-2];if(a.c===b.c&&a.ok&&b.ok&&cg>a.c){xp+=50;ouro+=15;sem.forjas++;ev(n,"Forjou arma nova em "+e.n+": de "+num(a.c)+" para "+num(cg)+" kg (+50 XP, +15 ouro)","forja")}}
+        h.push({c:cg,ok});maxC[e.k]=maxC[e.k]==null?cg:Math.max(maxC[e.k],cg);
+      }
+    });
+    Object.keys(stim).forEach(g=>{if(stim[g]<=0)return;const A=R.attrs[g];const mult=A.v<A.pico-0.01?2:1;A.v=Math.min(99,A.v+ATTR[g].g*stim[g]*(1-A.v/105)*mult);A.pico=Math.max(A.pico,A.v);A.sem=0});
+    sem.n++;
+    sem.letras.add(s.treino);sem.totLetras=Math.max(sem.totLetras,letras(fichaPorId(s.ficha||"ficha-1")).length);if(c>=0.999)sem.comp++;
+    if(nuc)sem.nucleoSess++;if(!pulou)sem.semPulo++;
+    const ch=chefeDe(mes.k),antes=mes.dano;mes.dano+=Math.round(c*100);
+    if(!mes.derrotado&&antes<ch.hp&&mes.dano>=ch.hp){
+      mes.derrotado=true;xp+=300;ouro+=60;const drop=ARMADURAS[R.derrotados%ARMADURAS.length];R.derrotados++;
+      if(!R.drops.includes(drop.id))R.drops.push(drop.id);
+      ev(n,ch.nome+(ch.f?" derrotada!":" derrotado!")+" Ganhou "+drop.n+" (+300 XP, +60 ouro)","chefe");
+    }
+    addXp(n,xp);R.ouro+=ouro;R.sess[s.id]={xp,ouro,c};
+  }
+  function fecharSemana(w,n,completa){
+    const key=ds(w.ini);
+    const lista=missoesDaSemana(key).map(id=>{const M=MISSOES[id];const[p,m]=M.chk(w);const ok=p>=m;
+      if(ok){addXp(n,M.xp);R.ouro+=M.ouro;ev(n,"Missão concluída: "+M.n+" (+"+M.xp+" XP, +"+M.ouro+" ouro)","missao")}
+      return{id,n:M.n,d:M.d,p:Math.min(p,m),m,ok,xp:M.xp,ouro:M.ouro}});
+    const D=R.attrs.disc,primeiraSem=w.ini===segunda(primeiro);
+    if(w.n>=3){D.v=Math.min(99,D.v+3*(1-D.v/105)*(D.v<D.pico-0.01?2:1));D.pico=Math.max(D.pico,D.v)}
+    else if(completa&&comecou&&!primeiraSem&&w.pausaDias<4){D.v=Math.max(5,D.v-3)}
+    if(w.ini===segunda(H))R.semana={ini:w.ini,lista,n:w.n};
+  }
+  function fecharMes(m,atual){const ch=chefeDe(m.k);const o={k:m.k,nome:ch.nome,d:ch.d,f:ch.f,hp:ch.hp,dano:m.dano,derrotado:m.derrotado};if(m.k>=mes0)R.chefes.push(o);if(atual){R.chefe=o;R.medMes=m.med}}
+  for(let n=ini;n<=H;n++){
+    if(mesKey(n)!==mes.k){fecharMes(mes,false);mes={k:mesKey(n),dano:0,derrotado:false,med:false}}
+    const emPausa=pausa.has(n);if(emPausa)sem.pausaDias++;
+    if(comecou&&!emPausa)["forca","vigor","nucleo","resist"].forEach(a=>{const A=R.attrs[a];A.sem++;if(A.sem>ATTR[a].car)A.v=Math.max(5,A.v-ATTR[a].taxa)});
+    (capDia[n]||[]).forEach(f=>ev(n,"Capítulo "+f.capitulo+" começa: "+f.nome,"capitulo"));
+    (porDia[n]||[]).forEach(s=>{comecou=true;sessao(n,s)});
+    if((medDia[n]||[]).length&&!mes.med){mes.med=true;addXp(n,40);R.ouro+=20;ev(n,"Medição do mês registrada (+40 XP, +20 ouro)","missao")}
+    if(dow(n)===0||n===H)fecharSemana(sem,n,dow(n)===0);
+    if(dow(n)===0)sem=novaSemana(n+1);
+  }
+  fecharMes(mes,true);
+  Object.keys(hist).forEach(k=>{const h=hist[k];if(h.length>=2){const a=h[h.length-1],b=h[h.length-2];if(a.c===b.c&&a.ok&&b.ok)R.forja.push({k,c:a.c})}});
+  R.nivel=nivelDe(R.xp);
+  R.gasto=P.compras.reduce((a,id)=>a+((ITENS_POR_ID[id]||{}).p||0),0);
+  R.ouroDisp=R.ouro-R.gasto;
+  R.comecou=comecou;
+  R.enferrujado=comecou&&!R.pausaHoje&&["forca","vigor","nucleo","resist"].some(a=>R.attrs[a].sem>ATTR[a].car);
+  return R;
+}
+
+/* ---------- Avatar em pixel art ---------- */
+const CORPO_M=[
+"................",
+".....SSSSSS.....",
+"....SSSSSSSS....",
+"....SSSSSSSS....",
+"....SSESSESS....",
+"....SSSSSSSS....",
+".....SSSSSS.....",
+"......SSSS......",
+"...ATTTTTTTTA...",
+"..AATTTTTTTTAA..",
+"..AATTTTTTTTAA..",
+"..AATTTTTTTTAA..",
+"..AATWWWWWWTAA..",
+"..GGTTTTTTTTGG..",
+"....PPPPPPPP....",
+"....PPPPPPPP....",
+"....PPP..PPP....",
+"....PPP..PPP....",
+"....PPP..PPP....",
+"....KKK..KKK....",
+"...BBBB..BBBB...",
+"...BBBB..BBBB...",
+"................",
+"................"];
+const CORPO_F=CORPO_M.slice();
+CORPO_F[6]=".....SSLLSS.....";
+CORPO_F[8]="....ATTTTTTA....";
+CORPO_F[9]="...AATTTTTTAA...";
+CORPO_F[10]="...AATTTTTTAA...";
+CORPO_F[11]="...AATTTTTTAA...";
+CORPO_F[12]="...AAWWWWWWAA...";
+CORPO_F[13]="...GGTTTTTTGG...";
+function cabeloPx(P){
+  const tam=P.cabTam||"curto",enr=P.cabTex==="enrolado",preso=!!P.cabPreso&&tam!=="curto";
+  const fr=[],tr=[],lc=[];const a=(L,r,c)=>L.push([r,c]);
+  for(let c=5;c<=10;c++)a(fr,1,c);for(let c=4;c<=11;c++)a(fr,2,c);a(fr,3,4);a(fr,3,11);
+  if(enr){[5,7,9].forEach(c=>a(fr,0,c));a(fr,1,4);a(fr,1,11);a(fr,2,3);a(fr,2,12);a(fr,3,5);a(fr,3,10)}
+  if(!preso&&tam!=="curto"){
+    for(let r=3;r<=6;r++){a(tr,r,3);a(tr,r,12)}a(fr,4,4);a(fr,4,11);
+    if(enr){[3,5].forEach(r=>{a(tr,r,2);a(tr,r,13)})}
+    if(tam==="medio"){a(tr,7,3);a(tr,7,4);a(tr,7,11);a(tr,7,12);if(enr){a(tr,7,2);a(tr,7,13)}}
+    else{for(let r=7;r<=10;r++){a(tr,r,3);a(tr,r,12)}for(let r=7;r<=10;r++){a(fr,r,4);a(fr,r,11)}if(enr){[4,6,8,10].forEach(r=>{a(tr,r,2);a(tr,r,13)});a(fr,11,4);a(fr,11,11)}}
+  }
+  if(preso){
+    if(tam==="medio"){[6,7,8,9].forEach(c=>a(fr,0,c));if(enr){a(fr,0,5);a(fr,0,10)}a(lc,1,7);a(lc,1,8)}
+    else{for(let r=3;r<=7;r++)a(tr,r,12);for(let r=2;r<=10;r++)a(tr,r,13);if(enr)[4,6,8,10].forEach(r=>a(tr,r,14));a(lc,3,12);a(lc,3,13)}
+  }
+  return{fr,tr,lc};
+}
+function hex2rgb(h){h=h.replace("#","");const n=parseInt(h,16);return[n>>16&255,n>>8&255,n&255]}
+function rgb2hex(r,g,b){return"#"+[r,g,b].map(x=>Math.max(0,Math.min(255,Math.round(x))).toString(16).padStart(2,"0")).join("")}
+function shade(h,f){const[r,g,b]=hex2rgb(h);return f>0?rgb2hex(r+(255-r)*f,g+(255-g)*f,b+(255-b)*f):rgb2hex(r*(1+f),g*(1+f),b*(1+f))}
+function mix(a,b,t){const A=hex2rgb(a),B=hex2rgb(b);return rgb2hex(A[0]+(B[0]-A[0])*t,A[1]+(B[1]-A[1])*t,A[2]+(B[2]-A[2])*t)}
+function desenharHeroi(cv,P,enf,escala){
+  const W=20,HH=24,OX=2,g=Array.from({length:HH},()=>Array(W).fill(null));
+  const put=(r,c,col)=>{if(r>=0&&r<HH&&c>=0&&c<W)g[r][c]=col};
+  const eq=P.equip||{},it=id=>ITENS_POR_ID[id];
+  const roupa=it(eq.roupa)||it("tunica_linho"),calca=it(eq.calca)||it("calca_marrom"),meia=it(eq.meias)||it("meias_brancas");
+  const luva=eq.luvas?it(eq.luvas):null,oc=eq.oculos?it(eq.oculos):null;
+  const pele=PELES[P.pele]||PELES[0],cab=CABELOS[P.cabelo]||CABELOS[0];
+  const arm=slot=>{const a=ARM_POR_ID[eq[slot]];return a||null};
+  const metal=a=>{const c=a.cor||METAIS[a.m];return enf?mix(c,"#8B4A2B",0.5):c};
+  const F=P.genero==="F",d=F?1:0,ax=c=>c<8?c+d:c-d;
+  const elmo=arm("elmo"),hp=cabeloPx(P),fio=cab,laco="#9C2F2F";
+  const capa=arm("capa");if(capa){const cc=metal(capa);for(let r=8;r<=19;r++)for(let c=2+d;c<=13-d;c++)put(r,c+OX,cc)}
+  hp.tr.forEach(([r,c])=>{if(!(elmo&&r<=2))put(r,c+OX,(r+c)%2&&P.cabTex==="enrolado"?shade(fio,.08):fio)});
+  const MAP={S:pele,E:"#1B1B1B",L:mix(pele,"#B0473F",0.5),T:roupa.cor,A:shade(roupa.cor,-0.18),W:"#4A3423",G:luva?luva.cor:pele,P:calca.cor,K:meia.cor,B:"#3B2A1D"};
+  (F?CORPO_F:CORPO_M).forEach((row,r)=>{for(let c=0;c<row.length;c++){const col=MAP[row[c]];if(col)put(r,c+OX,col)}});
+  hp.fr.forEach(([r,c])=>{if(!(elmo&&r<=2))put(r,c+OX,(r+c)%2&&P.cabTex==="enrolado"?shade(fio,.08):fio)});
+  hp.lc.forEach(([r,c])=>{if(!(elmo&&r<=2))put(r,c+OX,laco)});
+  if(meia.cor2)[4,6,9,11].forEach(c=>put(19,c+OX,meia.cor2));
+  const pe=arm("peitoral");if(pe){const m=metal(pe);for(let c=4+d;c<=11-d;c++)put(8,c+OX,m);for(let r=9;r<=11;r++)for(let c=5;c<=10;c++)put(r,c+OX,m);put(10,7+OX,shade(m,.35));put(10,8+OX,shade(m,.35))}
+  const om=arm("ombreiras");if(om){const m=metal(om);[[8,1],[8,2],[8,3],[8,12],[8,13],[8,14],[9,2],[9,3],[9,12],[9,13]].forEach(([r,c])=>put(r,ax(c)+OX,m))}
+  const ma=arm("manoplas");if(ma){const m=metal(ma);[[12,2],[12,3],[12,12],[12,13],[13,2],[13,3],[13,12],[13,13]].forEach(([r,c])=>put(r,ax(c)+OX,m))}
+  const gr=arm("grevas");if(gr){const m=metal(gr);for(let r=16;r<=19;r++)[4,5,6,9,10,11].forEach(c=>put(r,c+OX,m))}
+  const el_=elmo;if(el_){const m=metal(el_);for(let c=5;c<=10;c++)put(1,c+OX,m);for(let c=4;c<=11;c++)put(2,c+OX,m);[3,4,5].forEach(r=>{put(r,4+OX,m);put(r,11+OX,m)});put(0,7+OX,shade(m,.3));put(0,8+OX,shade(m,.3))}
+  if(oc){if(oc.id==="oculos_escuros"){for(let c=5;c<=10;c++)put(4,c+OX,oc.cor)}
+    else if(oc.id==="monoculo"){put(4,8+OX,oc.cor);put(4,10+OX,oc.cor);put(5,10+OX,oc.cor);put(6,10+OX,oc.cor)}
+    else{[5,7,8,10].forEach(c=>put(4,c+OX,oc.cor));put(4,6+OX,"#CFE6EE");put(4,9+OX,"#CFE6EE")}}
+  const cl=P.classe||"guerreiro";
+  if(cl==="guerreiro"){const lam="#D5DCE3",mad="#7A5230",gu="#B8913A";for(let r=3;r<=11;r++)put(r,17,lam);put(2,17,shade(lam,.5));for(let c=15;c<=19;c++)put(12,c,gu);put(13,16,mad);put(13,17,mad);put(14,17,mad);if(F)put(13,15,mad)}
+  else if(cl==="paladino"){const mad="#7A5230",cab2="#9AA3AB";for(let r=7;r<=15;r++)put(r,17,mad);for(let r=3;r<=6;r++)for(let c=15;c<=19;c++)put(r,c,cab2);put(13,16,mad);if(F)put(13,15,mad)}
+  else{const arco="#8A5A2B",corda="#E8E4DA";for(let r=7;r<=14;r++)put(r,1,arco);[4,5,6,15,16,17].forEach(r=>put(r,2,arco));put(3,3,arco);put(18,3,arco);for(let r=4;r<=17;r++)put(r,3,corda);if(F)put(13,4,arco)}
+  const S=escala||7,PAD=1;cv.width=(W+2*PAD)*S;cv.height=(HH+2*PAD)*S;
+  const x=cv.getContext("2d");x.clearRect(0,0,cv.width,cv.height);
+  const f=(r,c)=>r>=0&&r<HH&&c>=0&&c<W&&g[r][c];
+  for(let r=-1;r<=HH;r++)for(let c=-1;c<=W;c++){
+    let col=null;
+    if(f(r,c)){col=g[r][c];if(!f(r,c-1))col=shade(col,.14);else if(!f(r,c+1))col=shade(col,-.16)}
+    else if(f(r-1,c)||f(r+1,c)||f(r,c-1)||f(r,c+1))col="#1A1410";
+    if(col){x.fillStyle=col;x.fillRect((c+PAD)*S,(r+PAD)*S,S,S)}
+  }
+}
+
+/* ---------- Tela do herói ---------- */
+function chip(t,c){return el("span",{cls:"chip"+(c?" "+c:""),text:t})}
+function barra(pct,cls){const b=el("div",{cls:cls||"xpbar"});const i=el("i");i.style.width=Math.max(0,Math.min(100,pct))+"%";b.appendChild(i);return b}
+function trimestre(n){const s=ds(n);const y=+s.slice(0,4),q=Math.floor((+s.slice(5,7)-1)/3);return[dn(y+"-"+String(q*3+1).padStart(2,"0")+"-01"),dn((q===3?y+1:y)+"-"+String(q===3?1:q*3+4).padStart(2,"0")+"-01")-1]}
+function diasPausaNoTri(pausas,tri){let t=0;pausas.forEach(p=>{const a=Math.max(dn(p.ini),tri[0]),b=Math.min(dn(p.fim),tri[1]);if(b>=a)t+=b-a+1});return t}
+const COTA_TAVERNA=14;
+
+function renderHeroi(R){
+  R=R||motor();const P=perfil();const box=$("#heroi");if(!box)return;box.textContent="";
+  const H=dn(hoje());
+  /* Ficha */
+  const cv=el("canvas",{"aria-label":G("Avatar do herói","Avatar da heroína")});desenharHeroi(cv,P,R.enferrujado,7);
+  const nv=R.nivel,pct=nv.req?nv.dentro/nv.req*100:100;
+  const st=[];
+  if(R.pausaHoje)st.push(chip("Descansando na taverna até "+fmtCurta(dn(R.pausaHoje.fim)),""));
+  else if(R.enferrujado)st.push(chip(G("Enferrujado","Enferrujada"),"rust"));
+  else if(R.comecou)st.push(chip("Em forma","ok"));
+  const cls=nomeClasse(CLASSES.find(c=>c[0]===P.classe)||CLASSES[0]);
+  box.appendChild(el("section",{cls:"hero"},[el("div",{cls:"hero-cv"},[cv]),el("div",{cls:"hero-info"},[
+    el("div",{cls:"nome",text:P.nome||G("Herói","Heroína")}),
+    el("div",{cls:"sub",text:"Nível "+nv.n+" · "+titulo(nv.n)+" · "+cls}),
+    el("div",{cls:"xpt",text:"Capítulo "+fichaAtual().capitulo+" · "+fichaAtual().nome}),
+    barra(pct),
+    el("div",{cls:"xpt",text:nv.req?num(nv.dentro,0)+" / "+num(nv.req,0)+" XP para o nível "+(nv.n+1):"Nível máximo"}),
+    el("div",{cls:"ouro",text:num(R.ouroDisp,0)+" de ouro"}),
+    el("div",{cls:"chips"},st)
+  ])]));
+  $("#tab-heroi").textContent=G("Herói","Heroína");
+  if(!R.comecou)box.appendChild(el("p",{cls:"nota-rodape",text:"Sua jornada começa no primeiro treino salvo. Cada treino dá XP, ouro e pontos de atributo; as missões da semana e o chefe do mês dão recompensas extras."}));
+
+  /* Atributos */
+  const at=el("div",{cls:"attrs"});
+  ["forca","vigor","nucleo","resist","disc"].forEach(a=>{
+    const A=R.attrs[a],D=ATTR[a];let info="",rust=false;
+    if(a==="disc"){const n=R.semana?R.semana.n:0;info="Esta semana: "+Math.min(n,3)+" de 3 treinos. Cai 3 pontos a cada semana abaixo da meta."}
+    else if(!R.comecou)info=D.d+".";
+    else if(R.pausaHoje)info="Perda congelada enquanto você descansa na taverna.";
+    else if(A.sem>D.car){rust=true;info="Enferrujando: perde cerca de "+num(D.taxa*7,0)+" por semana até você treinar."}
+    else{const f=D.car-A.sem;info=f>0?"Começa a cair em "+f+(f===1?" dia":" dias")+" sem treinar.":"Começa a cair amanhã sem treino."}
+    if(A.v<A.pico-0.5)info+=" Memória muscular: recupera em dobro até "+Math.round(A.pico)+".";
+    const bar=barra(A.v/99*100,"abar "+a);
+    if(A.pico>A.v+0.5){const pk=el("span",{cls:"pk"});pk.style.left=(A.pico/99*100)+"%";bar.appendChild(pk)}
+    at.appendChild(el("div",{cls:"attr"},[el("div",{cls:"l"},[el("b",{text:D.n}),el("span",{text:String(Math.round(A.v))})]),bar,el("small",{cls:rust?"rust":"",text:info})]));
+  });
+  box.appendChild(el("section",null,[el("h2",{text:"Atributos"}),at]));
+
+  /* Chefe do mês */
+  const C=R.chefe;
+  if(C){
+    const diasRest=(()=>{const[y,m]=C.k.split("-").map(Number);const fim=dn((m===12?y+1:y)+"-"+String(m===12?1:m+1).padStart(2,"0")+"-01")-1;return fim-H})();
+    const vida=Math.max(0,C.hp-C.dano);
+    const prox=ARMADURAS[R.derrotados%ARMADURAS.length];
+    box.appendChild(el("section",null,[el("h2",{text:"Chefe do mês"}),el("div",{cls:"boss"+(C.derrotado?" dead":"")},[
+      el("div",{cls:"bn",text:C.nome}),el("div",{cls:"bd",text:C.d}),
+      barra(vida/C.hp*100,"hp"),
+      el("div",{cls:"bl"},[el("span",{text:C.derrotado?(C.f?"Derrotada":"Derrotado"):num(vida,0)+" / "+num(C.hp,0)+" de vida"}),el("span",{text:C.derrotado?"Recompensa recebida":diasRest+(diasRest===1?" dia restante":" dias restantes")})]),
+      el("small",{text:C.derrotado?"O próximo chefe aparece no início do mês.":"Cada treino causa dano igual ao percentual da ficha cumprida (até 100). Recompensa: "+prox.n+", 300 XP e 60 de ouro."})
+    ])]));
+  }
+
+  /* Missões */
+  const mis=el("div",{cls:"mis"});
+  (R.semana?R.semana.lista:missoesDaSemana(ds(segunda(H))).map(id=>({id,n:MISSOES[id].n,d:MISSOES[id].d,p:0,m:MISSOES[id].chk({n:0,letras:new Set(),totLetras:letras(fichaAtual()).length,comp:0,cardio:0,nucleoSess:0,prs:0,semPulo:0})[1],ok:false,xp:MISSOES[id].xp,ouro:MISSOES[id].ouro}))).forEach(m=>{
+    mis.appendChild(el("div",{cls:"mi"+(m.ok?" ok":"")},[el("div",null,[el("b",{text:m.n}),el("div",{cls:"md",text:m.d}),MISSOES[m.id]&&MISSOES[m.id].fx?el("div",{cls:"fx",text:MISSOES[m.id].fx()}):null]),el("div",{cls:"rw",text:m.ok?"Concluída":"+"+m.xp+" XP · +"+m.ouro+" ouro"}),el("div",{cls:"pr"},[barra(m.p/m.m*100),el("span",{text:num(m.p,0)+"/"+m.m})])]));
+  });
+  mis.appendChild(el("div",{cls:"mi"+(R.medMes?" ok":"")},[el("div",null,[el("b",{text:"Pesagem do escriba"}),el("div",{cls:"md",text:"Registrar uma medição na aba Corpo neste mês"}),el("div",{cls:"fx",text:G("O escriba registra a evolução do herói.","O escriba registra a evolução da heroína.")})]),el("div",{cls:"rw",text:R.medMes?"Concluída":"+40 XP · +20 ouro"})]));
+  const fimSem=segunda(H)+6;
+  box.appendChild(el("section",null,[el("h2",{text:"Missões"}),el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:"Semana de "+fmtCurta(segunda(H))+" a "+fmtCurta(fimSem)+". Novas missões toda segunda-feira."}),mis]));
+  if(R.forja.length){
+    const fl=el("div",{cls:"forja-box"});
+    R.forja.forEach(f=>{const e=NOMES[f.k];fl.appendChild(el("div",{cls:"fr"},[el("b",{text:e.n}),el("span",{text:num(f.c)+" kg"})]))});
+    box.appendChild(el("section",null,[el("h2",{text:"Forja"}),el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:"Você completou a meta de séries e repetições com a mesma carga em dois treinos seguidos. Suba a carga no próximo treino para forjar a arma nova: +50 XP e +15 de ouro por exercício."}),fl]));
+  }
+  /* Loja */
+  const loja=el("div",{cls:"shop"});
+  ITENS.forEach(i=>{
+    const tem=i.p===0||P.compras.includes(i.id),usando=P.equip[i.slot]===i.id;
+    const sw=el("div",{cls:"sw"});sw.style.background=i.cor2?"repeating-linear-gradient(90deg,"+i.cor+" 0 8px,"+i.cor2+" 8px 16px)":i.cor;
+    let bt;
+    if(usando){bt=el("button",{cls:"btn sm",type:"button",text:OPCIONAIS.includes(i.slot)?"Tirar":"Em uso"});if(OPCIONAIS.includes(i.slot))bt.addEventListener("click",()=>{const p=perfil();p.equip[i.slot]=null;salvarPerfil(p)});else bt.disabled=true}
+    else if(tem){bt=el("button",{cls:"btn sm",type:"button",text:"Vestir"});bt.addEventListener("click",()=>{const p=perfil();p.equip[i.slot]=i.id;salvarPerfil(p)})}
+    else if(R.ouroDisp>=i.p){bt=el("button",{cls:"btn sm pri",type:"button",text:"Comprar · "+i.p});armar(bt,"Confirmar compra",()=>{const p=perfil();if(!p.compras.includes(i.id))p.compras.push(i.id);p.equip[i.slot]=i.id;salvarPerfil(p);toast("Comprou "+i.n)})}
+    else{bt=el("button",{cls:"btn sm",type:"button",text:"Faltam "+(i.p-R.ouroDisp)+" de ouro"});bt.disabled=true}
+    loja.appendChild(el("div",{cls:"it"+(usando?" eq":"")},[sw,el("b",{text:i.n}),el("small",{text:SLOTS_NOME[i.slot]+(i.p?" · "+i.p+" de ouro":" · inicial")}),bt]));
+  });
+  box.appendChild(el("section",null,[el("h2",{text:"Loja"}),el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:"Você tem "+num(R.ouroDisp,0)+" de ouro. Ouro vem dos treinos, das missões e dos chefes."}),loja]));
+
+  /* Armaduras */
+  const ar=el("div",{cls:"shop"});const prox=ARMADURAS[R.derrotados%ARMADURAS.length];
+  ARMADURAS.filter(a=>R.drops.includes(a.id)||a.id===prox.id).forEach(a=>{
+    const tem=R.drops.includes(a.id),usando=P.equip[a.slot]===a.id;
+    const sw=el("div",{cls:"sw"});sw.style.background=a.cor||METAIS[a.m];
+    let bt=null;
+    if(tem){bt=el("button",{cls:"btn sm",type:"button",text:usando?"Tirar":"Vestir"});bt.addEventListener("click",()=>{const p=perfil();p.equip[a.slot]=usando?null:a.id;salvarPerfil(p)})}
+    ar.appendChild(el("div",{cls:"it"+(usando?" eq":"")+(tem?"":" lock")},[sw,el("b",{text:a.n}),el("small",{text:tem?"Conquistada":"Próxima recompensa de chefe"}),bt]));
+  });
+  const faltam=ARMADURAS.filter(a=>!R.drops.includes(a.id)).length;
+  box.appendChild(el("section",null,[el("h2",{text:"Armaduras"}),el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:R.drops.length+" de "+ARMADURAS.length+" conquistadas. As peças vêm em três metais: ferro, aço e ouro."}),ar]));
+
+  /* Personalizar */
+  const nome=el("input",{cls:"inp",type:"text",id:"heroNome",maxlength:"24",autocomplete:"off",placeholder:G("Herói","Heroína")});nome.value=P.nome||"";
+  nome.addEventListener("change",()=>{const p=perfil();p.nome=nome.value.trim();salvarPerfil(p)});
+  const segC=el("div",{cls:"seg"});CLASSES.forEach(c=>{const id=c[0],n=nomeClasse(c);const b=el("button",{type:"button","aria-pressed":String(P.classe===id),text:n});b.addEventListener("click",()=>{const p=perfil();p.classe=id;salvarPerfil(p)});segC.appendChild(b)});
+  const segP=el("div",{cls:"seg"});PELES.forEach((c,i)=>{const b=el("button",{type:"button",cls:"sw-btn","aria-label":"Tom de pele "+(i+1),"aria-pressed":String((P.pele||0)===i)});b.style.background=c;b.addEventListener("click",()=>{const p=perfil();p.pele=i;salvarPerfil(p)});segP.appendChild(b)});
+  const opc=(lista,atual,fn,dis)=>{const d=el("div",{cls:"seg"});lista.forEach(([v,t])=>{const b=el("button",{type:"button","aria-pressed":String(atual===v),text:t});if(dis&&dis(v))b.disabled=true;b.addEventListener("click",()=>{const p=perfil();fn(p,v);salvarPerfil(p)});d.appendChild(b)});return d};
+  const segG=opc([["M","Masculino"],["F","Feminino"]],P.genero||"M",(p,v)=>{p.genero=v});
+  const segH=el("div",{cls:"seg"});CABELOS.forEach((c,i)=>{const b=el("button",{type:"button",cls:"sw-btn","aria-label":"Cor do cabelo "+(i+1),"aria-pressed":String((P.cabelo||0)===i)});b.style.background=c;b.addEventListener("click",()=>{const p=perfil();p.cabelo=i;salvarPerfil(p)});segH.appendChild(b)});
+  const segT=opc([["curto","Curto"],["medio","Médio"],["longo","Longo"]],P.cabTam||"curto",(p,v)=>{p.cabTam=v;if(v==="curto")p.cabPreso=false});
+  const segX=opc([["liso","Liso"],["enrolado","Enrolado"]],P.cabTex||"liso",(p,v)=>{p.cabTex=v});
+  const segS=opc([[false,"Solto"],[true,"Preso"]],!!P.cabPreso&&P.cabTam!=="curto",(p,v)=>{p.cabPreso=v},v=>v===true&&(P.cabTam||"curto")==="curto");
+  const prev=el("canvas",{"aria-label":"Prévia do avatar"});desenharHeroi(prev,P,R.enferrujado,5);
+  box.appendChild(el("section",null,[el("h2",{text:"Personalizar"}),el("div",{cls:"pers"},[
+    el("div",{cls:"prev"},[prev]),
+    el("div",null,[el("label",{cls:"lbl",for:"heroNome",text:G("Nome do herói","Nome da heroína")}),nome]),
+    el("div",null,[el("span",{cls:"lbl",text:"Gênero"}),segG]),
+    el("div",null,[el("span",{cls:"lbl",text:"Classe"}),segC]),
+    el("div",null,[el("span",{cls:"lbl",text:"Tom de pele"}),segP]),
+    el("div",null,[el("span",{cls:"lbl",text:"Cor do cabelo"}),segH]),
+    el("div",null,[el("span",{cls:"lbl",text:"Comprimento"}),segT]),
+    el("div",null,[el("span",{cls:"lbl",text:"Tipo de fio"}),segX]),
+    el("div",null,[el("span",{cls:"lbl",text:"Penteado"}),segS,(P.cabTam||"curto")==="curto"?el("small",{cls:"md",text:"Cabelo curto fica sempre solto."}):el("small",{cls:"md",text:(P.cabTam==="longo"?"Preso vira rabo de cavalo.":"Preso vira coque.")})])
+  ])]));
+
+  /* Taverna */
+  const tri=trimestre(H),usados=diasPausaNoTri(P.pausas,tri),resta=Math.max(0,COTA_TAVERNA-usados);
+  const ti=el("input",{cls:"inp",type:"date",id:"tavIni"}),tf=el("input",{cls:"inp",type:"date",id:"tavFim"});ti.value=hoje();tf.value=ds(H+Math.min(6,Math.max(0,resta-1)));
+  const tb=el("button",{cls:"btn",type:"button",text:"Descansar na taverna"});
+  tb.addEventListener("click",()=>{
+    if(!ti.value||!tf.value){toast("Informe início e fim");return}
+    const a=dn(ti.value),b=dn(tf.value);
+    if(b<a){toast("O fim precisa ser depois do início");return}
+    if(a<H-7){toast("O descanso pode começar no máximo 7 dias atrás");return}
+    const p=perfil();const nova=p.pausas.concat([{ini:ti.value,fim:tf.value}]);
+    for(let n=a;n<=b;n++){const t=trimestre(n);if(diasPausaNoTri(nova,t)>COTA_TAVERNA){toast("Passa da cota de "+COTA_TAVERNA+" dias no trimestre");return}}
+    if(p.pausas.some(x=>!(dn(x.fim)<a||dn(x.ini)>b))){toast("Já existe descanso nesse período");return}
+    p.pausas=nova;salvarPerfil(p);toast(G("Bom descanso, herói.","Bom descanso, heroína.")+" A perda de atributos fica congelada.");
+  });
+  const ativas=P.pausas.map((p,i)=>({p,i})).filter(o=>dn(o.p.fim)>=H).sort((x,y)=>x.p.ini.localeCompare(y.p.ini));
+  const lp=el("div",{cls:"mis"});
+  ativas.forEach(({p,i})=>{const b=el("button",{cls:"btn sm",type:"button",text:dn(p.ini)>H?"Cancelar":"Encerrar hoje"});
+    b.addEventListener("click",()=>{const q=perfil();if(dn(q.pausas[i].ini)>H)q.pausas.splice(i,1);else q.pausas[i].fim=hoje();salvarPerfil(q)});
+    lp.appendChild(el("div",{cls:"mi"},[el("div",null,[el("b",{text:fmtCurta(dn(p.ini))+" a "+fmtCurta(dn(p.fim))}),el("div",{cls:"md",text:dn(p.ini)>H?"Agendado":"Em andamento"})]),b]))});
+  box.appendChild(el("section",null,[el("h2",{text:"Taverna"}),el("div",{cls:"tav"},[
+    el("p",{cls:"md",text:"Para doença, viagem ou lesão. Enquanto você descansa, os atributos não caem e a Disciplina não é cobrada. Restam "+resta+" de "+COTA_TAVERNA+" dias neste trimestre."}),
+    el("div",{cls:"row2"},[el("div",null,[el("label",{cls:"lbl",for:"tavIni",text:"Início"}),ti]),el("div",null,[el("label",{cls:"lbl",for:"tavFim",text:"Fim"}),tf])]),
+    tb,ativas.length?lp:null
+  ])]));
+
+  /* Diário de aventuras */
+  const log=el("div",{cls:"log"});
+  const evs=R.ev.slice().reverse().slice(0,20);
+  if(!evs.length)log.appendChild(el("div",null,[el("time",{text:"—"}),el("span",{text:"Nenhuma aventura ainda. Salve o primeiro treino."})]));
+  evs.forEach(e=>log.appendChild(el("div",{cls:"lg-"+e.tipo},[el("time",{text:fmtCurta(e.n)}),el("span",{text:e.txt})])));
+  box.appendChild(el("section",null,[el("h2",{text:"Diário de aventuras"}),log]));
+}
+
+function resumoRecompensa(antes,depois){
+  const dx=depois.xp-antes.xp,dg=depois.ouro-antes.ouro;
+  const vistos=new Set(antes.ev.map(e=>e.n+"|"+e.txt));
+  const novos=depois.ev.filter(e=>!vistos.has(e.n+"|"+e.txt)&&e.tipo!=="recorde"&&e.tipo!=="forja").map(e=>e.txt.replace(/ \(\+.*\)$/,""));
+  const l=[];if(dx>0||dg>0)l.push("+"+dx+" XP · +"+dg+" de ouro");
+  return l.concat(novos.slice(0,3)).join("\n");
+}
+window.__diario={motor:()=>motor(),desenhar:desenharHeroi,rotinas:b=>rotinasDoArquivo(b)};
+
+/* ================== FICHAS E IMPORTAÇÃO DO SMARTGYM ================== */
+function lerBplist(buf){
+  const u=new Uint8Array(buf),dv=new DataView(buf);
+  if(String.fromCharCode.apply(null,u.slice(0,8))!=="bplist00")throw new Error("formato");
+  const L=u.length,offSize=u[L-26],refSize=u[L-25];
+  const rdN=(o,n)=>{let v=0;for(let i=0;i<n;i++)v=v*256+u[o+i];return v};
+  const numObj=rdN(L-24,8),top=rdN(L-16,8),tblOff=rdN(L-8,8);
+  const offs=[];for(let i=0;i<numObj;i++)offs.push(rdN(tblOff+i*offSize,offSize));
+  const cache=new Map();
+  const len=(o,info)=>{if(info!==0xF)return[info,o+1];const m=u[o+1],n=1<<(m&0xF);return[rdN(o+2,n),o+2+n]};
+  function obj(i){
+    if(cache.has(i))return cache.get(i);
+    const o=offs[i],m=u[o],t=m>>4,info=m&0xF;let v=null;
+    if(t===0x0)v=info===8?false:info===9?true:null;
+    else if(t===0x1){const n=1<<info;v=rdN(o+1,n);if(n===8&&u[o+1]&0x80)v=Number(dv.getBigInt64(o+1))}
+    else if(t===0x2)v=info===2?dv.getFloat32(o+1):dv.getFloat64(o+1);
+    else if(t===0x3)v=new Date((dv.getFloat64(o+1)+978307200)*1000);
+    else if(t===0x4){const[n,s]=len(o,info);v=u.slice(s,s+n)}
+    else if(t===0x5){const[n,s]=len(o,info);let str="";for(let k=0;k<n;k++)str+=String.fromCharCode(u[s+k]);v=str}
+    else if(t===0x6){const[n,s]=len(o,info);let str="";for(let k=0;k<n;k++)str+=String.fromCharCode(dv.getUint16(s+2*k));v=str}
+    else if(t===0x8)v={UID:rdN(o+1,info+1)};
+    else if(t===0xA){const[n,s]=len(o,info);v=[];cache.set(i,v);for(let k=0;k<n;k++)v.push(obj(rdN(s+k*refSize,refSize)));return v}
+    else if(t===0xD){const[n,s]=len(o,info);v={};cache.set(i,v);for(let k=0;k<n;k++){const key=obj(rdN(s+k*refSize,refSize));v[key]=obj(rdN(s+(n+k)*refSize,refSize))}return v}
+    cache.set(i,v);return v;
+  }
+  return obj(top);
+}
+function desarquivar(root){
+  const objs=root.$objects;let prof=0;
+  const r=x=>{
+    if(++prof>20000)throw new Error("arquivo grande demais");
+    if(x&&typeof x==="object"&&!Array.isArray(x)&&!(x instanceof Uint8Array)&&!(x instanceof Date)){
+      const ks=Object.keys(x);
+      if(ks.length===1&&ks[0]==="UID")return r(objs[x.UID]);
+      if("NS.keys" in x){const o={};x["NS.keys"].forEach((k,i)=>{o[r(k)]=r(x["NS.objects"][i])});return o}
+      if("NS.objects" in x)return x["NS.objects"].map(r);
+      if("NS.string" in x)return r(x["NS.string"]);
+      const o={};ks.forEach(k=>{if(k!=="$class"&&!/Image$/.test(k))o[k]=r(x[k])});return o;
+    }
+    if(Array.isArray(x))return x.map(r);
+    if(x==="$null")return null;
+    return x;
+  };
+  return r(root.$top.root);
+}
+function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g," ").trim()}
+const GID_CONHECIDOS={25:"esteira",26:"eliptico",257:"flexao_plantar",39:"rosca_direta",226:"triceps_frances",717:"afundo",187:"crucifixo_inclinado",15:"elevacao_pernas",20:"prancha"};
+const CAT_ATTR={1:"nucleo",2:"resist",4:"forca",6:"vigor",10:"vigor",11:"forca",12:"forca"};
+function sugerirAttr(x,nome){
+  const nm=normTxt(nome);
+  if(x.type===4||/esteira|eliptic|bike|bicicleta|corrida|caminhada|escada|ergometr|transport|spinning|corda/.test(nm))return"resist";
+  if(/abdom|prancha|crunch|obliq|elevacao (das|de) pernas|canivete|russian|dead bug|hollow|lombar/.test(nm))return"nucleo";
+  if(/agach|leg|perna|panturr|gluteo|afundo|passada|stiff|bulgar|extensora|flexora|adutora|abdutora|plantar|terra|hip thrust|pelvica|coice|sumo|step/.test(nm))return"vigor";
+  if(CAT_ATTR[x.category])return CAT_ATTR[x.category];
+  if(x.type===2)return"nucleo";
+  return"forca";
+}
+function chaveExercicio(gid,nome){
+  if(GID_CONHECIDOS[gid])return GID_CONHECIDOS[gid];
+  const nn=normTxt(nome);
+  for(const k in NOMES){if(NOMES[k].gid===gid&&gid)return k;if(normTxt(NOMES[k].n)===nn)return k}
+  return gid?"g"+gid:"c"+nn.replace(/[^a-z0-9]+/g,"_").slice(0,40);
+}
+function exDoGym(x){
+  const sets=(x.sets||[]).filter(Boolean),s0=sets[0]||{},nome=String(x.name||"Exercício").trim();
+  const gid=Number(x.genericID||x.id||0)||null;
+  const e={k:chaveExercicio(gid,nome),n:nome,gid,desc:Math.round(x.pause||30)};
+  if(x.type===4){e.t="min";e.d=Math.round(s0.firstValue||15)}
+  else if(x.type===2){e.t="seg";e.s=sets.length||1;e.d=Math.round(s0.secondValue||30)}
+  else if(x.type===0){e.t="kg";e.s=sets.length||3;e.r=Math.round(s0.secondValue||12);e.d=s0.thirdValue||null}
+  else{e.t="pc";e.s=sets.length||3;e.r=Math.round(s0.secondValue||12)}
+  if(x.twoSides)e.nota="cada lado";
+  e.attr=sugerirAttr(x,nome);
+  e.novo=!NOMES[e.k];
+  return e;
+}
+function rotinasDoArquivo(buf){
+  const d=desarquivar(lerBplist(buf));const rs=(d&&d.routines)||[];
+  return rs.map(r=>({nome:String(r.name||"").trim(),objetivo:String(r.goal||"").trim(),ex:(r.exercises||[]).filter(Boolean).sort((a,b)=>(a.index||0)-(b.index||0)).map(exDoGym)})).filter(r=>r.ex.length);
+}
+function letraDe(nome,usadas){
+  const m=String(nome).match(/(?:^|[\s\-–_])([A-Za-z])\s*$/);let l=m?m[1].toUpperCase():null;
+  if(!l||usadas.includes(l)){l="ABCDEFGHIJ".split("").find(x=>!usadas.includes(x))}
+  return l;
+}
+const ATTR_OPC=[["forca","Força"],["vigor","Vigor"],["nucleo","Núcleo"],["resist","Resistência"]];
+function focoDe(ex){const c={};ex.forEach(e=>{const a=attrDe(e);if(a)c[a]=(c[a]||0)+(a==="resist"?0.5:1)});return Object.keys(c).sort((a,b)=>c[b]-c[a]).slice(0,2).map(a=>ATTR[a].n).join(" e ")||"Treino"}
+
+let IMP=null;
+async function lerArquivosGym(files){
+  const novas=[];
+  for(const f of files){
+    try{const buf=await f.arrayBuffer();novas.push(...rotinasDoArquivo(buf))}
+    catch(e){toast("Não consegui ler "+f.name+". Exporte a rotina pelo SmartGym e tente de novo.",4000)}
+  }
+  if(!novas.length)return;
+  if(!IMP){const fa=fichaAtual();IMP={nome:"Ficha de "+new Date().toLocaleDateString("pt-BR",{month:"long",year:"numeric"}),inicio:hoje(),manter:true,treinos:{}}}
+  novas.forEach(r=>{const l=letraDe(r.nome,Object.keys(IMP.treinos));IMP.treinos[l]={nome:"Treino "+l,origem:r.nome,ex:r.ex}});
+  renderImport();
+}
+function renderImport(){
+  const sh=$("#impSheet");if(!IMP){sh.hidden=true;document.body.classList.remove("sheet-open");return}
+  sh.hidden=false;document.body.classList.add("sheet-open");
+  const box=$("#impBody");box.textContent="";
+  const fa=fichaAtual(),cap=fa.capitulo+1;
+  const nome=el("input",{cls:"inp",type:"text",id:"impNome",maxlength:"40"});nome.value=IMP.nome;nome.addEventListener("input",()=>{IMP.nome=nome.value});
+  const ini=el("input",{cls:"inp",type:"date",id:"impIni"});ini.value=IMP.inicio;ini.addEventListener("input",()=>{IMP.inicio=ini.value});
+  box.appendChild(el("div",{cls:"imp-top"},[el("h2",{text:"Capítulo "+cap}),el("p",{cls:"md",text:"Confira os exercícios e o atributo que cada um treina. Exercícios já registrados mantêm histórico, recordes e forja."})]));
+  box.appendChild(el("div",{cls:"row2"},[el("div",null,[el("label",{cls:"lbl",for:"impNome",text:"Nome da ficha"}),nome]),el("div",null,[el("label",{cls:"lbl",for:"impIni",text:"Começa em"}),ini])]));
+  Object.keys(IMP.treinos).sort().forEach(l=>{
+    const T=IMP.treinos[l];const lista=el("div",{cls:"imp-ex"});
+    T.ex.forEach((e,i)=>{
+      const sel=el("select",{"aria-label":"Atributo de "+e.n});ATTR_OPC.forEach(([v,t])=>{const o=el("option",{value:v,text:t});if(e.attr===v)o.selected=true;sel.appendChild(o)});
+      sel.addEventListener("change",()=>{e.attr=sel.value});
+      lista.appendChild(el("div",{cls:"ir"},[el("div",{cls:"exn"},[el("b",{text:e.n}),el("small",{text:metaTxt(e)}),el("span",{cls:"tag"+(e.novo?" novo":""),text:e.novo?"Novo":"Já registrado"})]),sel]));
+    });
+    const rm=el("button",{cls:"btn ghost sm",type:"button",text:"Remover"});rm.addEventListener("click",()=>{delete IMP.treinos[l];if(!Object.keys(IMP.treinos).length)IMP=null;renderImport()});
+    box.appendChild(el("section",{cls:"imp-t"},[el("div",{cls:"imp-h"},[el("span",{cls:"pill "+corLetra(l),text:l}),el("b",{text:T.nome}),el("small",{cls:"md",text:T.origem?"Arquivo: "+T.origem:""}),rm]),lista]));
+  });
+  const faltam=letras(fa).filter(l=>!IMP.treinos[l]);
+  if(faltam.length){
+    const cb=el("input",{type:"checkbox",id:"impManter"});cb.checked=IMP.manter;cb.addEventListener("change",()=>{IMP.manter=cb.checked});
+    box.appendChild(el("label",{cls:"imp-keep",for:"impManter"},[cb,el("span",{text:"Manter da ficha atual o"+(faltam.length>1?"s treinos ":" treino ")+faltam.join(", ")+", que não veio no arquivo"})]));
+  }
+  const add=el("button",{cls:"btn",type:"button",text:"Adicionar outro arquivo"});add.addEventListener("click",()=>$("#gymFile").click());
+  const ok=el("button",{cls:"btn pri",type:"button",text:"Começar capítulo "+cap});ok.addEventListener("click",confirmarImport);
+  const cx=el("button",{cls:"btn ghost",type:"button",text:"Cancelar"});cx.addEventListener("click",()=>{IMP=null;renderImport()});
+  box.appendChild(el("div",{cls:"acoes"},[ok,add,cx]));
+}
+async function confirmarImport(){
+  if(!IMP)return;
+  if(!IMP.inicio){toast("Informe a data de início");return}
+  const fa=fichaAtual();const tr={};
+  Object.keys(IMP.treinos).forEach(l=>{const T=IMP.treinos[l];const vist=new Set();
+    tr[l]={nome:T.nome,ex:T.ex.filter(e=>{if(vist.has(e.k))return false;vist.add(e.k);return true}).map(e=>{const o=Object.assign({},e);delete o.novo;return o})};
+    tr[l].foco=focoDe(tr[l].ex)});
+  if(IMP.manter)letras(fa).forEach(l=>{if(!tr[l]){const T=fa.treinos[l];tr[l]={nome:T.nome||("Treino "+l),foco:T.foco||focoDe(T.ex),ex:T.ex.map(e=>Object.assign({},e,{attr:attrDe(e)}))}}});
+  const f={id:"ficha-"+novoId(),tipo:"ficha",capitulo:fa.capitulo+1,nome:(IMP.nome||"").trim()||("Ficha "+(fa.capitulo+1)),inicio:IMP.inicio,treinos:tr,criadoEm:new Date().toISOString()};
+  if(lsGet(LS_T,null))parar(true);
+  await store.put(f);IMP=null;renderImport();
+  atualizarNomes();lsSet(LS_D,null);F=formVazio(letras(f)[0]);renderForm();renderTudo();
+  toast("Capítulo "+f.capitulo+" começou: "+f.nome,4000);
+}
+function renderFichaBar(){
+  const fa=fichaAtual(),box=$("#fichaBar");box.textContent="";
+  const usada=treinos().some(s=>(s.ficha||"ficha-1")===fa.id);
+  const imp=el("button",{cls:"btn sm",type:"button",text:"Importar ficha"});imp.addEventListener("click",()=>$("#gymFile").click());
+  const kids=[el("div",{cls:"fb-t"},[el("span",{cls:"lbl",text:"Capítulo "+fa.capitulo}),el("b",{text:fa.nome})]),imp];
+  if(fa.capitulo>1&&!usada){const un=el("button",{cls:"btn sm ghost",type:"button",text:"Desfazer"});armar(un,"Confirmar",async()=>{await store.del(fa.id);atualizarNomes();lsSet(LS_D,null);F=formVazio();renderForm();renderTudo();toast("Importação desfeita")});kids.push(un)}
+  if(F&&F.ficha&&F.ficha!==fa.id)kids.push(el("small",{cls:"md",style:"flex-basis:100%",text:"Este registro usa a ficha do capítulo "+fichaPorId(F.ficha).capitulo+"."}));
+  kids.forEach(k=>box.appendChild(k));
+}
+$("#gymFile").addEventListener("change",async e=>{const fs=[...(e.target.files||[])];e.target.value="";if(fs.length)await lerArquivosGym(fs)});
+
 /* ---------- Abas ---------- */
-const VIEWS=["treino","corpo","historico","resumo"];
+const VIEWS=["heroi","treino","corpo","historico","resumo"];
 function mostrar(v){if(!VIEWS.includes(v))v="treino";VIEWS.forEach(x=>{$("#v-"+x).hidden=x!==v;$("#tab-"+x).setAttribute("aria-selected",String(x===v))})}
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{mostrar(b.dataset.v);window.scrollTo(0,0)}));
-function renderTudo(){renderLista();renderResumo();renderCorpo()}
+function renderTudo(){atualizarNomes();const R=motor();renderHeroi(R);renderLista(R);renderResumo();renderCorpo()}
 
 /* ---------- Início ---------- */
+atualizarNomes();
 const rasc=lsGet(LS_D,null);
-if(rasc&&rasc.itens){F=Object.assign(formVazio(rasc.treino),rasc,{editId:null})}
-else{const ult=treinos().sort(ordDesc)[0];F=formVazio(ult?(ult.treino==="A"?"B":"A"):"A")}
+if(rasc&&rasc.itens&&(rasc.ficha||"ficha-1")===fichaAtual().id){F=Object.assign(formVazio(rasc.treino),rasc,{ficha:fichaAtual().id,editId:null})}
+else{const ult=treinos().sort(ordDesc)[0];F=formVazio(ult&&(ult.ficha||"ficha-1")===fichaAtual().id?proximaLetra(fichaAtual().id,ult.treino):null)}
 M=lsGet(LS_M,null)||medVazio();M.editId=null;
 renderForm();renderMForm();renderTudo();mostrar("treino");tick();
 store.init();
