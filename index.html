@@ -24,7 +24,7 @@
   --bg:#EDEFEA; --surface:#FFFFFF; --ink:#16191D; --muted:#5C636A; --line:#D5D9D2;
   --a:#2546C4; --a-soft:#E2E7FA; --b:#BF4E1B; --b-soft:#FAE5D9;
   --ok:#1E7448; --ok-soft:#DCF0E4; --bad:#9F3426; --bad-soft:#F6DFDA; --on-accent:#FFFFFF;
-  --gold:#9A6B00; --hp:#B03A2E; --rust:#9C4A22; --hero-bg:#DCE2D4; --c-forca:#B03A2E; --c-vigor:#2E7D4F; --c-nucleo:#8A5A00; --c-resist:#2546C4; --c-disc:#6B3FA0;
+  --gold:#9A6B00; --hp:#B03A2E; --rust:#9C4A22; --hero-bg:#DCE2D4; --c-forca:#B03A2E; --c-vigor:#2E7D4F; --c-nucleo:#8A5A00; --c-resist:#2546C4; --c-disc:#6B3FA0; --c-car:#A63D74; --warn:#A8550A; --warn-soft:#FBEBD9;
   --accent:var(--a); --accent-soft:var(--a-soft);
   --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -33,13 +33,13 @@
   --bg:#111316; --surface:#1A1D21; --ink:#ECEEEA; --muted:#9AA1A8; --line:#2C3036;
   --a:#8099F6; --a-soft:#202945; --b:#F28B58; --b-soft:#3A2317;
   --ok:#62C995; --ok-soft:#163024; --bad:#F2806F; --bad-soft:#3A1D19; --on-accent:#0E1013; color-scheme:dark;
-  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6;
+  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6; --c-car:#E68AB8; --warn:#F0A04B; --warn-soft:#3A2814;
 }}
 :root[data-theme="dark"]{
   --bg:#111316; --surface:#1A1D21; --ink:#ECEEEA; --muted:#9AA1A8; --line:#2C3036;
   --a:#8099F6; --a-soft:#202945; --b:#F28B58; --b-soft:#3A2317;
   --ok:#62C995; --ok-soft:#163024; --bad:#F2806F; --bad-soft:#3A1D19; --on-accent:#0E1013; color-scheme:dark;
-  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6;
+  --gold:#E3B341; --hp:#E06A5C; --rust:#E08A5A; --hero-bg:#252B30; --c-forca:#E8705F; --c-vigor:#5CC48A; --c-nucleo:#E0B04A; --c-resist:#8099F6; --c-disc:#B48CE6; --c-car:#E68AB8; --warn:#F0A04B; --warn-soft:#3A2814;
 }
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
 body.tB{--accent:var(--b);--accent-soft:var(--b-soft)}
@@ -218,7 +218,7 @@ thead th{border-top:0;font-size:12px;letter-spacing:.06em;text-transform:upperca
 .attr small{font-size:12.5px;color:var(--muted);line-height:1.35}
 .attr small.rust{color:var(--rust)}
 .abar{overflow:visible}
-.abar.forca i{background:var(--c-forca)} .abar.vigor i{background:var(--c-vigor)} .abar.nucleo i{background:var(--c-nucleo)} .abar.resist i{background:var(--c-resist)} .abar.disc i{background:var(--c-disc)}
+.abar.forca i{background:var(--c-forca)} .abar.vigor i{background:var(--c-vigor)} .abar.nucleo i{background:var(--c-nucleo)} .abar.resist i{background:var(--c-resist)} .abar.disc i{background:var(--c-disc)} .abar.carisma i{background:var(--c-car)}
 .abar .pk{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55;margin-left:-1px}
 .boss{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
 .boss .bn{font-family:var(--f-display);font-weight:700;font-size:26px;text-transform:uppercase;line-height:1;color:var(--hp)}
@@ -290,6 +290,33 @@ body.sheet-open{overflow:hidden}
 .chip.xp{background:transparent;border-color:var(--gold);color:var(--gold);font-weight:600}
 .toast{white-space:pre-line}
 
+/* Saúde */
+.subnav{display:flex;gap:6px;margin-bottom:16px}
+.subnav button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 12px;font-weight:600;min-height:42px}
+.subnav button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip.fl-ok{background:var(--ok-soft);border-color:transparent;color:var(--ok)}
+.chip.fl-al,.chip.fl-bx{background:var(--warn-soft);border-color:transparent;color:var(--warn);font-weight:600}
+.att{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.att-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:9px 12px;border-top:1px solid var(--line)}
+.att-r:first-child{border-top:0}
+.att-n{font-weight:600}
+.att-v{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--warn)}
+.att-r small{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.pend{margin-top:12px;display:grid;gap:8px;background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:12px}
+.extab{display:grid;background:var(--bg);border-radius:10px;overflow:hidden}
+.exr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px 10px;align-items:center;padding:8px 10px;border-top:1px solid var(--line)}
+.exr:first-child{border-top:0}
+.exr .exn small{display:block;font-size:12px;color:var(--muted)}
+.exv{display:grid;justify-items:end;gap:3px;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.exr .x{border:0;background:transparent;color:var(--muted);font-size:18px;width:28px;height:28px;border-radius:6px;padding:0}
+.exr .x.armed{width:auto;padding:0 8px;font-size:12px}
+.exform{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.spark{display:block}.sp-band{fill:var(--ok-soft)}.sp-line{fill:none;stroke:var(--accent);stroke-width:1.6}.sp-dot{fill:var(--accent)}
+/* Cofre */
+.cf-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cf-top h2{flex:1;margin:0;color:var(--ink);font-size:28px;min-width:0;overflow-wrap:anywhere}
+.cf-cfg summary{font-weight:600;color:var(--ink);padding:8px 0}
+
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:20;max-width:calc(100% - 32px);text-align:center}
 body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
 @media (prefers-reduced-motion:no-preference){.toast{animation:in .2s ease-out}@keyframes in{from{opacity:0;transform:translate(-50%,8px)}}}
@@ -306,7 +333,7 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
     <div class="tabs" role="tablist">
       <button role="tab" id="tab-heroi" aria-selected="false" data-v="heroi" type="button">Herói</button>
       <button role="tab" id="tab-treino" aria-selected="true" data-v="treino" type="button">Treino</button>
-      <button role="tab" id="tab-corpo" aria-selected="false" data-v="corpo" type="button">Corpo</button>
+      <button role="tab" id="tab-corpo" aria-selected="false" data-v="corpo" type="button">Saúde</button>
       <button role="tab" id="tab-historico" aria-selected="false" data-v="historico" type="button">Histórico</button>
       <button role="tab" id="tab-resumo" aria-selected="false" data-v="resumo" type="button">Resumo</button>
     </div>
@@ -372,6 +399,8 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
 
   <!-- CORPO -->
   <main id="v-corpo" hidden>
+    <div class="subnav" id="subSaude"><button type="button" data-s="medidas" aria-pressed="true">Medidas corporais</button><button type="button" data-s="exames" aria-pressed="false">Exames</button></div>
+    <div id="sub-medidas">
     <div class="editando" id="mEditBar" hidden><span id="mEditTxt">Editando medidas</span><button class="btn ghost sm" id="mCancel" type="button">Cancelar</button></div>
     <section>
       <h2>Nova medição</h2>
@@ -386,6 +415,31 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
       <h2>Medições registradas</h2>
       <div class="lista" id="mLista"></div>
     </section>
+    </div>
+    <div id="sub-exames" hidden>
+      <div id="exAtencao"></div>
+      <section>
+        <h2>Laudos</h2>
+        <div class="lista" id="exLista"></div>
+        <div class="dados" style="margin-top:10px"><button class="btn" id="exImp" type="button">Importar exames (JSON)</button></div>
+      </section>
+      <div id="exEvol"></div>
+      <section>
+        <h2>Adicionar resultado</h2>
+        <div class="exform">
+          <div class="row2"><div><label class="lbl" for="exData">Data da coleta</label><input class="inp" type="date" id="exData"></div><div><label class="lbl" for="exLab">Laboratório</label><input class="inp" type="text" id="exLab" list="exLabs" autocomplete="off"></div></div>
+          <div><label class="lbl" for="exNome">Exame</label><input class="inp" type="text" id="exNome" list="exNomes" autocomplete="off" placeholder="ex.: Ferritina"></div>
+          <div class="row2"><div><label class="lbl" for="exValor">Resultado</label><input class="inp" type="text" inputmode="decimal" id="exValor"></div><div><label class="lbl" for="exUn">Unidade</label><input class="inp" type="text" id="exUn" autocomplete="off" placeholder="ex.: ng/mL"></div></div>
+          <div class="row2"><div><label class="lbl" for="exMin">Referência mínima</label><input class="inp" type="text" inputmode="decimal" id="exMin"></div><div><label class="lbl" for="exMax">Referência máxima</label><input class="inp" type="text" inputmode="decimal" id="exMax"></div></div>
+          <div><label class="lbl" for="exGrupo">Grupo</label><input class="inp" type="text" id="exGrupo" list="exGrupos" autocomplete="off" placeholder="ex.: Vitaminas"></div>
+          <datalist id="exNomes"></datalist><datalist id="exLabs"></datalist>
+          <datalist id="exGrupos"><option value="Hemograma"></option><option value="Função renal"></option><option value="Eletrólitos e minerais"></option><option value="Perfil lipídico"></option><option value="Função hepática"></option><option value="Glicemia"></option><option value="Tireoide"></option><option value="Vitaminas e ferro"></option><option value="Hormônios"></option><option value="Outros"></option></datalist>
+          <button class="btn pri" id="exAdd" type="button">Adicionar ao laudo</button>
+          <p class="nota-rodape" style="margin:0">Resultados com a mesma data e laboratório entram no mesmo laudo. Um exame que estava pendente sai da lista quando você adiciona o resultado.</p>
+        </div>
+      </section>
+      <p class="nota-rodape">A sinalização compara cada valor com o intervalo de referência do próprio laudo. Ela não é diagnóstico: a interpretação cabe ao médico, junto com o quadro clínico.</p>
+    </div>
   </main>
 
   <!-- HISTÓRICO -->
@@ -423,6 +477,8 @@ body.running .toast{bottom:calc(170px + env(safe-area-inset-bottom,0px))}
   </div>
 </div>
 <div class="sheet" id="impSheet" hidden role="dialog" aria-label="Importar ficha"><div class="sheet-in" id="impBody"></div></div>
+<div class="sheet" id="cofreSheet" hidden role="dialog" aria-label="Cofre"><div class="sheet-in" id="cofreBody"></div></div>
+<input type="file" id="cofreFile" hidden>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -504,7 +560,7 @@ function armar(btn,txt,fn){let t;btn.addEventListener("click",()=>{if(!btn.class
 
 /* ---------- Registros ---------- */
 let regs = lsGet(LS_S,[]);
-const treinos=()=>regs.filter(r=>r.tipo!=="medidas"&&r.tipo!=="perfil"&&r.tipo!=="ficha");
+const treinos=()=>regs.filter(r=>r.tipo!=="medidas"&&r.tipo!=="perfil"&&r.tipo!=="ficha"&&r.tipo!=="exame");
 const medicoes=()=>regs.filter(r=>r.tipo==="medidas");
 function feito(e,it){if(!it)return false;return e.t==="min"?(pn(it.min)||0)>0:(pn(it.series)||0)>0}
 function itensDe(s){
@@ -922,8 +978,10 @@ $("#arquivo").addEventListener("change",async e=>{
       if(s.tipo==="ficha"&&s.treinos&&s.id){await store.put(Object.assign({},s));n++;continue}
       if(s.tipo==="perfil"){const p=Object.assign({},PERFIL_PADRAO,s,{id:"perfil",tipo:"perfil"});await store.put(p);n++;continue}
       if(s.tipo==="medidas"){if(typeof s.valores!=="object"||!s.valores)continue;const v={};Object.keys(s.valores).forEach(k=>{if(MCAMPOS[k]&&pn(s.valores[k])!=null)v[k]=pn(s.valores[k])});await store.put({id,tipo:"medidas",data:s.data,valores:v,obs:String(s.obs||""),criadoEm});n++;continue}
-      if(s.treino!=="A"&&s.treino!=="B")continue;
-      const r={id,tipo:"treino",data:s.data,treino:s.treino,duracao:pn(s.duracao),fisico:pn(s.fisico),mental:pn(s.mental),medicacao:!!s.medicacao,obs:String(s.obs||""),criadoEm,voltas:Array.isArray(s.voltas)?s.voltas.filter(v=>v&&NOMES[v.k]&&pn(v.s)>0).map(v=>({k:v.k,s:pn(v.s)})):[]};
+      if(s.tipo==="exame"){if(!Array.isArray(s.itens))continue;const its=s.itens.filter(x=>x&&x.n&&pn(x.v)!=null).map(x=>({k:String(x.k||slugEx(x.n)),n:String(x.n),g:String(x.g||"Outros"),v:pn(x.v),u:String(x.u||""),min:pn(x.min),max:pn(x.max),refTxt:x.refTxt?String(x.refTxt):undefined,metas:Array.isArray(x.metas)?x.metas.filter(m=>Array.isArray(m)&&m.length===2).map(m=>[String(m[0]),pn(m[1])]):undefined}));
+        await store.put({id,tipo:"exame",data:s.data,lab:String(s.lab||""),itens:its,pendentes:Array.isArray(s.pendentes)?s.pendentes.map(String):[],obs:String(s.obs||""),criadoEm});n++;continue}
+      if(!/^[A-J]$/.test(String(s.treino)))continue;
+      const r={id,tipo:"treino",ficha:s.ficha?String(s.ficha):undefined,data:s.data,treino:s.treino,duracao:pn(s.duracao),fisico:pn(s.fisico),mental:pn(s.mental),medicacao:!!s.medicacao,obs:String(s.obs||""),criadoEm,voltas:Array.isArray(s.voltas)?s.voltas.filter(v=>v&&NOMES[v.k]&&pn(v.s)>0).map(v=>({k:v.k,s:pn(v.s)})):[]};
       if(s.itens&&typeof s.itens==="object")r.itens=s.itens;else if(s.cargas&&typeof s.cargas==="object")r.cargas=s.cargas;
       await store.put(r);n++;
     }
@@ -948,7 +1006,8 @@ const ATTR={
   vigor:{n:"Vigor",d:"Adutora, abdutora, agachamento, afundo e panturrilha",g:0.6,car:14,taxa:0.15},
   nucleo:{n:"Núcleo",d:"Abdominal, elevação das pernas e prancha",g:0.8,car:14,taxa:0.15},
   resist:{n:"Resistência",d:"Minutos de esteira e elíptico",g:0.45,car:7,taxa:0.3},
-  disc:{n:"Disciplina",d:"Semanas com 3 treinos ou mais"}
+  disc:{n:"Disciplina",d:"Semanas com 3 treinos ou mais"},
+  carisma:{n:"Atributo secreto",d:"Registros do cofre",g:1.2,car:14,taxa:0.15}
 };
 const TITULOS=[[1,"Recruta","Recruta"],[5,"Escudeiro","Escudeira"],[10,"Soldado","Soldada"],[15,"Cavaleiro","Cavaleira"],[20,"Veterano","Veterana"],[25,"Capitão","Capitã"],[30,"Campeão","Campeã"],[40,"Lorde","Dama"],[50,"Lenda","Lenda"]];
 function ehF(){const p=regs.find(r=>r.tipo==="perfil");return !!(p&&p.genero==="F")}
@@ -1035,6 +1094,9 @@ function motor(){
   const H=dn(hoje());
   const R={xp:0,ouro:0,ev:[],sess:{},attrs:{},semana:null,chefe:null,chefes:[],forja:[],drops:[],medMes:false,pausaHoje:null,derrotados:0};
   ["forca","vigor","nucleo","resist","disc"].forEach(a=>{R.attrs[a]={v:10,pico:10,sem:0}});
+  const bonusDia={};(lsGet(LS_BR,[])||[]).forEach(b=>{if(b&&typeof b.s==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(b.s)){const n=dn(b.s);bonusDia[n]=(bonusDia[n]||0)+(+b.u||0)}});
+  const carDia={};let carComecou=false;
+  if(cofreAberto()){R.attrs.carisma={v:10,pico:10,sem:0};ATTR.carisma.n=COFRE.dados.config.atributo||"Atributo secreto";COFRE.dados.itens.forEach(i=>{if(i.data){const n=dn(i.data);carDia[n]=(carDia[n]||0)+1}})}
   const pausa=new Set();P.pausas.forEach(p=>{for(let n=dn(p.ini);n<=dn(p.fim);n++)pausa.add(n)});
   R.pausaHoje=P.pausas.find(p=>dn(p.ini)<=H&&H<=dn(p.fim))||null;
   const ev=(n,txt,tipo)=>R.ev.push({n,txt,tipo});
@@ -1043,7 +1105,8 @@ function motor(){
   const capDia={};fichas().forEach(f=>{if(f.capitulo>1&&f.inicio){const n=dn(f.inicio);(capDia[n]=capDia[n]||[]).push(f)}});
   const medDia={};ms.forEach(m=>{const n=dn(m.data);(medDia[n]=medDia[n]||[]).push(m)});
   const primeiro=ts.length?dn(ts[0].data):H;
-  const ini=segunda(Math.min(primeiro,H));
+  const extras=Object.keys(bonusDia).concat(Object.keys(carDia)).map(Number);
+  const ini=segunda(Math.min(primeiro,H,...(extras.length?extras:[H])));
   const mes0=mesKey(primeiro);
   const idxMes=k=>{const[a,b]=k.split("-").map(Number),[a0,b0]=mes0.split("-").map(Number);return Math.max(0,(a-a0)*12+(b-b0))};
   const chefeDe=k=>{const i=idxMes(k);const c=CHEFES[i%CHEFES.length];return{nome:c.n,d:c.d,f:!!c.f,hp:1000+100*Math.floor(i/CHEFES.length)}};
@@ -1096,6 +1159,9 @@ function motor(){
     if(mesKey(n)!==mes.k){fecharMes(mes,false);mes={k:mesKey(n),dano:0,derrotado:false,med:false}}
     const emPausa=pausa.has(n);if(emPausa)sem.pausaDias++;
     if(comecou&&!emPausa)["forca","vigor","nucleo","resist"].forEach(a=>{const A=R.attrs[a];A.sem++;if(A.sem>ATTR[a].car)A.v=Math.max(5,A.v-ATTR[a].taxa)});
+    if(bonusDia[n]){const A=R.attrs.resist,m=A.v<A.pico-0.01?2:1;A.v=Math.min(99,A.v+ATTR.resist.g*bonusDia[n]*(1-A.v/105)*m);A.pico=Math.max(A.pico,A.v);A.sem=0}
+    if(R.attrs.carisma){const C=R.attrs.carisma;if(carComecou&&!emPausa){C.sem++;if(C.sem>ATTR.carisma.car)C.v=Math.max(5,C.v-ATTR.carisma.taxa)}
+      for(let i=0;i<(carDia[n]||0);i++){carComecou=true;const m=C.v<C.pico-0.01?2:1;C.v=Math.min(99,C.v+ATTR.carisma.g*(1-C.v/105)*m);C.pico=Math.max(C.pico,C.v);C.sem=0}}
     (capDia[n]||[]).forEach(f=>ev(n,"Capítulo "+f.capitulo+" começa: "+f.nome,"capitulo"));
     (porDia[n]||[]).forEach(s=>{comecou=true;sessao(n,s)});
     if((medDia[n]||[]).length&&!mes.med){mes.med=true;addXp(n,40);R.ouro+=20;ev(n,"Medição do mês registrada (+40 XP, +20 ouro)","missao")}
@@ -1240,7 +1306,7 @@ function renderHeroi(R){
 
   /* Atributos */
   const at=el("div",{cls:"attrs"});
-  ["forca","vigor","nucleo","resist","disc"].forEach(a=>{
+  ["forca","vigor","nucleo","resist","disc"].concat(R.attrs.carisma?["carisma"]:[]).forEach(a=>{
     const A=R.attrs[a],D=ATTR[a];let info="",rust=false;
     if(a==="disc"){const n=R.semana?R.semana.n:0;info="Esta semana: "+Math.min(n,3)+" de 3 treinos. Cai 3 pontos a cada semana abaixo da meta."}
     else if(!R.comecou)info=D.d+".";
@@ -1273,7 +1339,7 @@ function renderHeroi(R){
   (R.semana?R.semana.lista:missoesDaSemana(ds(segunda(H))).map(id=>({id,n:MISSOES[id].n,d:MISSOES[id].d,p:0,m:MISSOES[id].chk({n:0,letras:new Set(),totLetras:letras(fichaAtual()).length,comp:0,cardio:0,nucleoSess:0,prs:0,semPulo:0})[1],ok:false,xp:MISSOES[id].xp,ouro:MISSOES[id].ouro}))).forEach(m=>{
     mis.appendChild(el("div",{cls:"mi"+(m.ok?" ok":"")},[el("div",null,[el("b",{text:m.n}),el("div",{cls:"md",text:m.d}),MISSOES[m.id]&&MISSOES[m.id].fx?el("div",{cls:"fx",text:MISSOES[m.id].fx()}):null]),el("div",{cls:"rw",text:m.ok?"Concluída":"+"+m.xp+" XP · +"+m.ouro+" ouro"}),el("div",{cls:"pr"},[barra(m.p/m.m*100),el("span",{text:num(m.p,0)+"/"+m.m})])]));
   });
-  mis.appendChild(el("div",{cls:"mi"+(R.medMes?" ok":"")},[el("div",null,[el("b",{text:"Pesagem do escriba"}),el("div",{cls:"md",text:"Registrar uma medição na aba Corpo neste mês"}),el("div",{cls:"fx",text:G("O escriba registra a evolução do herói.","O escriba registra a evolução da heroína.")})]),el("div",{cls:"rw",text:R.medMes?"Concluída":"+40 XP · +20 ouro"})]));
+  mis.appendChild(el("div",{cls:"mi"+(R.medMes?" ok":"")},[el("div",null,[el("b",{text:"Pesagem do escriba"}),el("div",{cls:"md",text:"Registrar uma medição na aba Saúde neste mês"}),el("div",{cls:"fx",text:G("O escriba registra a evolução do herói.","O escriba registra a evolução da heroína.")})]),el("div",{cls:"rw",text:R.medMes?"Concluída":"+40 XP · +20 ouro"})]));
   const fimSem=segunda(H)+6;
   box.appendChild(el("section",null,[el("h2",{text:"Missões"}),el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:"Semana de "+fmtCurta(segunda(H))+" a "+fmtCurta(fimSem)+". Novas missões toda segunda-feira."}),mis]));
   if(R.forja.length){
@@ -1527,11 +1593,308 @@ function renderFichaBar(){
 }
 $("#gymFile").addEventListener("change",async e=>{const fs=[...(e.target.files||[])];e.target.value="";if(fs.length)await lerArquivosGym(fs)});
 
+/* ================== SAÚDE: EXAMES LABORATORIAIS ================== */
+const exames=()=>regs.filter(r=>r.tipo==="exame"&&Array.isArray(r.itens));
+function slugEx(n){return normTxt(n).replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"").slice(0,50)}
+function flagEx(it){
+  const v=it.v;if(v==null||isNaN(v))return null;
+  if(it.min!=null&&v<it.min)return"baixo";
+  if(it.max!=null&&v>it.max)return"alto";
+  if(Array.isArray(it.metas)&&it.metas.length){const lim=Math.max.apply(null,it.metas.map(m=>m[1]));return v>=lim?"meta":"ok"}
+  if(it.min==null&&it.max==null)return null;
+  return"ok";
+}
+function numEx(v){if(v==null||isNaN(v))return"—";return Number(v).toLocaleString("pt-BR",{maximumFractionDigits:2})}
+function refEx(it){
+  if(it.refTxt)return it.refTxt;
+  if(it.min!=null&&it.max!=null)return numEx(it.min)+" a "+numEx(it.max)+" "+(it.u||"");
+  if(it.max!=null)return"Até "+numEx(it.max)+" "+(it.u||"");
+  if(it.min!=null)return"Acima de "+numEx(it.min)+" "+(it.u||"");
+  return"Sem intervalo definido";
+}
+function chipFlag(it){
+  const f=flagEx(it);
+  if(f==="baixo")return el("span",{cls:"chip fl-bx",text:"Abaixo"});
+  if(f==="alto")return el("span",{cls:"chip fl-al",text:"Acima"});
+  if(f==="meta")return el("span",{cls:"chip fl-al",text:"Acima das metas"});
+  if(f==="ok")return el("span",{cls:"chip fl-ok",text:it.metas?"Dentro de meta":"Dentro"});
+  return el("span",{cls:"chip",text:"Sem referência"});
+}
+function faixaMeta(it){
+  if(!Array.isArray(it.metas))return"";
+  const ord=it.metas.slice().sort((a,b)=>a[1]-b[1]);const ok=ord.filter(m=>it.v<m[1]);
+  return ok.length?"Atende a meta de risco "+ok[0][0].toLowerCase()+" (abaixo de "+numEx(ok[0][1])+")":"Acima de todas as metas da tabela do laudo";
+}
+let SUB_SAUDE="medidas";
+function mostrarSub(v){SUB_SAUDE=v;$("#sub-medidas").hidden=v!=="medidas";$("#sub-exames").hidden=v!=="exames";document.querySelectorAll("#subSaude button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.s===v)))}
+document.querySelectorAll("#subSaude button").forEach(b=>b.addEventListener("click",()=>mostrarSub(b.dataset.s)));
+
+function renderExames(){
+  const ls=exames().sort(ordDesc);
+  /* Atenção e pendentes */
+  const at=$("#exAtencao");at.textContent="";
+  if(ls.length){
+    const ult={};ls.slice().reverse().forEach(r=>r.itens.forEach(it=>{ult[it.k||slugEx(it.n)]={it,d:r.data}}));
+    const todos=Object.values(ult),fora=todos.filter(o=>["baixo","alto","meta"].includes(flagEx(o.it)));
+    const kids=[el("h2",{text:"Resultados mais recentes"})];
+    if(fora.length){
+      const g=el("div",{cls:"att"});
+      fora.forEach(({it,d})=>{const f=flagEx(it);g.appendChild(el("div",{cls:"att-r"},[el("span",{cls:"att-n",text:it.n}),el("span",{cls:"att-v "+(f==="baixo"?"bx":"al"),text:(f==="baixo"?"↓ ":"↑ ")+numEx(it.v)+" "+(it.u||"")}),el("small",{text:(it.metas?faixaMeta(it):"Referência: "+refEx(it))+" · "+fmtCurta(dn(d))+"/"+d.slice(0,4)})]))});
+      kids.push(el("p",{cls:"nota-rodape",style:"margin:-4px 0 10px",text:fora.length+" de "+todos.length+" exames acompanhados estão fora do intervalo de referência do laudo ou acima das metas da tabela, considerando o resultado mais recente de cada um."}));
+      kids.push(g);
+    }else kids.push(el("p",{cls:"md",text:"O resultado mais recente de todos os "+todos.length+" exames está dentro do intervalo de referência do laudo."}));
+    const pend=ls.reduce((a,r)=>a.concat((r.pendentes||[]).map(p=>({p,r}))),[]);
+    if(pend.length)kids.push(el("div",{cls:"pend"},[el("b",{text:"Aguardando resultado"}),el("div",{cls:"chips"},pend.map(o=>el("span",{cls:"chip",text:o.p}))),el("small",{cls:"md",text:"Quando sair, adicione o resultado abaixo ou importe o arquivo do laudo."})]));
+    at.appendChild(el("section",null,kids));
+  }
+  /* Laudos */
+  const box=$("#exLista");box.textContent="";
+  if(!ls.length)box.appendChild(el("div",{cls:"vazio"},[el("b",{text:"Nenhum exame registrado"}),el("span",{text:"Importe o arquivo de exames (JSON) em Importar exames, ou adicione resultados um a um no formulário abaixo."})]));
+  ls.forEach(r=>{
+    const fora=r.itens.filter(it=>["baixo","alto","meta"].includes(flagEx(it))).length;
+    const grupos={};r.itens.forEach(it=>{const g=it.g||"Outros";(grupos[g]=grupos[g]||[]).push(it)});
+    const det=el("details",null,[el("summary",{text:"Ver resultados"})]);
+    Object.keys(grupos).forEach(g=>{
+      const t=el("div",{cls:"extab"});
+      grupos[g].forEach(it=>{
+        const rm=el("button",{cls:"x",type:"button","aria-label":"Remover "+it.n,text:"×"});
+        armar(rm,"Remover",async()=>{const rr=Object.assign({},r,{itens:r.itens.filter(x=>x!==it)});await store.put(rr);renderExames()});
+        t.appendChild(el("div",{cls:"exr"},[el("div",{cls:"exn"},[el("b",{text:it.n}),el("small",{text:refEx(it)+(it.metas?" · "+faixaMeta(it):"")})]),el("div",{cls:"exv"},[el("span",{text:numEx(it.v)+" "+(it.u||"")}),chipFlag(it)]),rm]));
+      });
+      det.appendChild(el("h3",{text:g}));det.appendChild(t);
+    });
+    if(r.obs)det.appendChild(el("div",{cls:"obs",text:r.obs}));
+    const del=el("button",{cls:"btn sm danger",type:"button",text:"Excluir laudo"});armar(del,"Confirmar exclusão",async()=>{await store.del(r.id);renderExames();toast("Laudo excluído")});
+    box.appendChild(el("article",{cls:"card"},[
+      el("div",{cls:"h"},[el("span",{cls:"pill M",text:"Laudo"}),el("span",{cls:"d",text:fmtData(r.data)}),el("span",{cls:"dur",text:r.lab||""})]),
+      el("div",{cls:"chips"},[el("span",{cls:"chip",text:r.itens.length+(r.itens.length===1?" resultado":" resultados")}),fora?el("span",{cls:"chip fl-al",text:fora+" fora da referência"}):el("span",{cls:"chip fl-ok",text:"Tudo dentro"}),(r.pendentes||[]).length?el("span",{cls:"chip",text:r.pendentes.length+" pendentes"}):null]),
+      det,el("div",{cls:"act"},[del])
+    ]));
+  });
+  /* Evolução */
+  const ev=$("#exEvol");ev.textContent="";
+  const serie={};ls.slice().reverse().forEach(r=>r.itens.forEach(it=>{const k=it.k||slugEx(it.n);(serie[k]=serie[k]||[]).push({d:r.data,it})}));
+  const ks=Object.keys(serie).filter(k=>serie[k].length>=2);
+  if(ls.length){
+    if(!ks.length)ev.appendChild(el("section",null,[el("h2",{text:"Evolução"}),el("p",{cls:"md",text:"A comparação entre laudos aparece a partir do segundo exame de cada item."})]));
+    else{
+      const rows=ks.map(k=>{const s=serie[k],a=s[s.length-2].it,b=s[s.length-1].it,d=b.v-a.v;
+        return el("tr",null,[el("td",{text:b.n}),el("td",{text:numEx(a.v)}),el("td",null,[el("span",{text:numEx(b.v)+" "}),chipFlag(b)]),el("td",{text:(d>0?"+":"")+numEx(d)+" "+(b.u||"")}),el("td",null,[spark(s.map(x=>x.it.v),b)])])});
+      ev.appendChild(el("section",null,[el("h2",{text:"Evolução"}),el("div",{cls:"tbl"},[el("table",null,[el("thead",null,[el("tr",null,["Exame","Anterior","Último","Variação",""].map(h=>el("th",{text:h})))]),el("tbody",null,rows)])])]));
+    }
+  }
+  /* Datalists do formulário */
+  const dl=$("#exNomes");dl.textContent="";const vist={};
+  ls.forEach(r=>r.itens.forEach(it=>{if(!vist[it.n]){vist[it.n]=it;dl.appendChild(el("option",{value:it.n}))}}));
+  ls.forEach(r=>(r.pendentes||[]).forEach(p=>{if(!vist[p]){vist[p]=1;dl.appendChild(el("option",{value:p}))}}));
+  const dlab=$("#exLabs");dlab.textContent="";[...new Set(ls.map(r=>r.lab).filter(Boolean))].forEach(l=>dlab.appendChild(el("option",{value:l})));
+  window.__exVistos=vist;
+}
+function spark(vals,it){
+  const W=90,H=26,mn=Math.min.apply(null,vals.concat(it.min!=null?[it.min]:[])),mx=Math.max.apply(null,vals.concat(it.max!=null?[it.max]:[]));
+  const sc=v=>H-3-((v-mn)/((mx-mn)||1))*(H-6);
+  const ns="http://www.w3.org/2000/svg";const svg=document.createElementNS(ns,"svg");svg.setAttribute("viewBox","0 0 "+W+" "+H);svg.setAttribute("width",W);svg.setAttribute("height",H);svg.setAttribute("class","spark");
+  if(it.min!=null&&it.max!=null){const r=document.createElementNS(ns,"rect");r.setAttribute("x",0);r.setAttribute("width",W);r.setAttribute("y",sc(it.max));r.setAttribute("height",Math.max(1,sc(it.min)-sc(it.max)));r.setAttribute("class","sp-band");svg.appendChild(r)}
+  const pts=vals.map((v,i)=>[4+i*(W-8)/Math.max(1,vals.length-1),sc(v)]);
+  const pl=document.createElementNS(ns,"polyline");pl.setAttribute("points",pts.map(p=>p.join(",")).join(" "));pl.setAttribute("class","sp-line");svg.appendChild(pl);
+  const c=document.createElementNS(ns,"circle");const l=pts[pts.length-1];c.setAttribute("cx",l[0]);c.setAttribute("cy",l[1]);c.setAttribute("r",2.6);c.setAttribute("class","sp-dot");svg.appendChild(c);
+  return svg;
+}
+$("#exNome").addEventListener("change",()=>{const v=window.__exVistos&&window.__exVistos[$("#exNome").value];if(v&&typeof v==="object"){if(!$("#exUn").value)$("#exUn").value=v.u||"";if(!$("#exMin").value&&v.min!=null)$("#exMin").value=fin(v.min);if(!$("#exMax").value&&v.max!=null)$("#exMax").value=fin(v.max);if(!$("#exGrupo").value)$("#exGrupo").value=v.g||""}});
+$("#exData").value=hoje();
+$("#exAdd").addEventListener("click",async()=>{
+  const data=$("#exData").value,lab=$("#exLab").value.trim(),n=$("#exNome").value.trim(),v=pn($("#exValor").value);
+  if(!data||!n||v==null){toast("Preencha data, exame e valor");return}
+  const it={k:slugEx(n),n,g:$("#exGrupo").value.trim()||"Outros",v,u:$("#exUn").value.trim(),min:pn($("#exMin").value),max:pn($("#exMax").value)};
+  const alvo=exames().find(r=>r.data===data&&normTxt(r.lab||"")===normTxt(lab));
+  const r=alvo?Object.assign({},alvo,{itens:alvo.itens.filter(x=>(x.k||slugEx(x.n))!==it.k).concat([it]),pendentes:(alvo.pendentes||[]).filter(p=>normTxt(p)!==normTxt(n))}):{id:"exame-"+novoId(),tipo:"exame",data,lab,itens:[it],pendentes:[],obs:"",criadoEm:new Date().toISOString()};
+  await store.put(r);["exNome","exValor","exUn","exMin","exMax"].forEach(id=>{$("#"+id).value=""});renderExames();toast(n+" adicionado ao laudo de "+fmtData(data));
+});
+$("#exImp").addEventListener("click",()=>$("#arquivo").click());
+
+/* ================== COFRE ================== */
+const LS_C="diarioTreino.cofre.v1",LS_BR="diarioTreino.bonusR.v1";
+const b64=buf=>{const u=new Uint8Array(buf);let s="";for(let i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)};
+const unb64=s=>{const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
+const rnd=n=>crypto.getRandomValues(new Uint8Array(n));
+const TE=new TextEncoder(),TD=new TextDecoder();
+const INTENS={leve:["Leve",0.5],moderada:["Moderada",1],intensa:["Intensa",1.5]};
+async function chaveSenha(senha,salt,iter){const base=await crypto.subtle.importKey("raw",TE.encode(senha),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:iter,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function chavePRF(prf,salt){const base=await crypto.subtle.importKey("raw",prf,"HKDF",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"HKDF",hash:"SHA-256",salt,info:TE.encode("diario-cofre-v1")},base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function cifra(key,bytes){const iv=rnd(12);const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,bytes);return{iv:b64(iv),ct:b64(ct)}}
+async function decifra(key,o){return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:unb64(o.iv)},key,unb64(o.ct)))}
+function cofreSalvo(){return lsGet(LS_C,null)}
+function gravarLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));return localStorage.getItem(k)===JSON.stringify(v)}catch(e){return false}}
+const COFRE={dek:null,raw:null,dados:null,ocultoEm:0,ui:null,edit:null};
+const cofreAberto=()=>!!COFRE.dados;
+function suportaPasskey(){return !!(window.PublicKeyCredential&&navigator.credentials&&window.isSecureContext&&location.protocol==="https:")}
+
+async function criarCofre(senha,config){
+  const raw=rnd(32),salt=rnd(16),iter=600000;
+  const kS=await chaveSenha(senha,salt,iter);
+  const dek=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["encrypt","decrypt"]);
+  const dados={v:1,config,itens:[]};
+  const c={v:1,salt:b64(salt),iter,wrapS:await cifra(kS,raw),face:null,dados:await cifra(dek,TE.encode(JSON.stringify(dados))),criadoEm:new Date().toISOString()};
+  if(!gravarLS(LS_C,c))throw new Error("armazenamento");
+  Object.assign(COFRE,{dek,raw,dados});atualizarBonus();
+}
+async function carregarCofre(raw){
+  const c=cofreSalvo();const dek=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["encrypt","decrypt"]);
+  const dados=JSON.parse(TD.decode(await decifra(dek,c.dados)));
+  Object.assign(COFRE,{dek,raw,dados});atualizarBonus();
+}
+async function abrirComSenha(senha){const c=cofreSalvo();const kS=await chaveSenha(senha,unb64(c.salt),c.iter);let raw;try{raw=await decifra(kS,c.wrapS)}catch(e){throw new Error("senha")}await carregarCofre(raw)}
+async function gravarCofre(){const c=cofreSalvo();c.dados=await cifra(COFRE.dek,TE.encode(JSON.stringify(COFRE.dados)));if(!gravarLS(LS_C,c)){toast("Não consegui gravar o cofre neste aparelho.",4000);return false}atualizarBonus();return true}
+function trancarCofre(){COFRE.dek=null;COFRE.raw=null;COFRE.dados=null;COFRE.edit=null;renderCofre();renderTudo()}
+async function trocarSenha(nova){const c=cofreSalvo();const salt=rnd(16);const kS=await chaveSenha(nova,salt,c.iter);c.salt=b64(salt);c.wrapS=await cifra(kS,COFRE.raw);if(!gravarLS(LS_C,c))throw new Error("armazenamento")}
+async function obterPRF(credId,prfSalt){
+  const a=await navigator.credentials.get({publicKey:{challenge:rnd(32),allowCredentials:[{type:"public-key",id:credId}],userVerification:"required",timeout:60000,extensions:{prf:{eval:{first:prfSalt}}}}});
+  const ext=a&&a.getClientExtensionResults?a.getClientExtensionResults():{};
+  const out=ext.prf&&ext.prf.results&&ext.prf.results.first;if(!out)throw new Error("prf");return new Uint8Array(out);
+}
+async function ativarFaceID(){
+  const prfSalt=rnd(32);
+  const cred=await navigator.credentials.create({publicKey:{challenge:rnd(32),rp:{name:"Diário de Treino"},user:{id:rnd(16),name:"diario",displayName:"Diário de Treino"},pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],authenticatorSelection:{residentKey:"preferred",userVerification:"required",authenticatorAttachment:"platform"},timeout:60000,extensions:{prf:{eval:{first:prfSalt}}}}});
+  const ext=cred&&cred.getClientExtensionResults?cred.getClientExtensionResults():{};
+  if(!ext.prf||ext.prf.enabled===false)throw new Error("prf");
+  const credId=new Uint8Array(cred.rawId);
+  let out=ext.prf.results&&ext.prf.results.first?new Uint8Array(ext.prf.results.first):await obterPRF(credId,prfSalt);
+  const k=await chavePRF(out,prfSalt);
+  const c=cofreSalvo();c.face={id:b64(credId),salt:b64(prfSalt),wrap:await cifra(k,COFRE.raw)};
+  if(!gravarLS(LS_C,c))throw new Error("armazenamento");
+}
+async function abrirComFaceID(){const c=cofreSalvo();const s=unb64(c.face.salt);const out=await obterPRF(unb64(c.face.id),s);const k=await chavePRF(out,s);await carregarCofre(await decifra(k,c.face.wrap))}
+
+/* bônus de Resistência sem rótulo: só a soma semanal, gravada fora do cofre */
+function unidadesCofre(it){const m=(INTENS[it.int]||INTENS.moderada)[1];return Math.min(1.5,(pn(it.min)||0)/15*m)}
+function atualizarBonus(){
+  if(!COFRE.dados)return;const sem={};
+  COFRE.dados.itens.forEach(it=>{if(!it.data)return;const k=ds(segunda(dn(it.data)));sem[k]=(sem[k]||0)+unidadesCofre(it)});
+  lsSet(LS_BR,Object.keys(sem).sort().map(k=>({s:k,u:Math.round(sem[k]*100)/100})));
+}
+
+/* acesso oculto: 5 toques no título */
+(function(){let n=0,t=0;$("h1").addEventListener("click",()=>{const a=Date.now();n=a-t<700?n+1:1;t=a;if(n>=5){n=0;abrirCofreUI()}})})();
+document.addEventListener("visibilitychange",()=>{if(document.hidden)COFRE.ocultoEm=Date.now();else if(cofreAberto()&&Date.now()-COFRE.ocultoEm>120000&&COFRE.ocultoEm)trancarCofre()});
+function abrirCofreUI(){COFRE.ui=true;renderCofre()}
+function fecharCofreUI(){COFRE.ui=false;renderCofre();renderTudo()}
+
+function renderCofre(){
+  const sh=$("#cofreSheet");
+  if(!COFRE.ui){sh.hidden=true;if($("#impSheet").hidden)document.body.classList.remove("sheet-open");return}
+  sh.hidden=false;document.body.classList.add("sheet-open");
+  const box=$("#cofreBody");box.textContent="";const c=cofreSalvo();
+  const fechar=el("button",{cls:"btn ghost sm",type:"button",text:"Fechar"});fechar.addEventListener("click",fecharCofreUI);
+  const topo=(t,extra)=>el("div",{cls:"cf-top"},[el("h2",{text:t})].concat(extra||[]).concat([fechar]));
+  /* criar */
+  if(!c){
+    const at=el("input",{cls:"inp",type:"text",id:"cfAtv",maxlength:"30",placeholder:"ex.: Atividade",autocomplete:"off"});
+    const ab=el("input",{cls:"inp",type:"text",id:"cfAtr",maxlength:"20",placeholder:"ex.: Foco",autocomplete:"off"});
+    const s1=el("input",{cls:"inp",type:"password",id:"cfS1",autocomplete:"new-password"}),s2=el("input",{cls:"inp",type:"password",id:"cfS2",autocomplete:"new-password"});
+    const ok=el("button",{cls:"btn pri",type:"button",text:"Criar cofre"});
+    ok.addEventListener("click",async()=>{
+      if(s1.value.length<8){toast("A senha precisa ter pelo menos 8 caracteres");return}
+      if(s1.value!==s2.value){toast("As senhas não conferem");return}
+      ok.disabled=true;ok.textContent="Criando…";
+      try{await criarCofre(s1.value,{atividade:at.value.trim()||"Atividade",atributo:ab.value.trim()||"Atributo secreto"});toast("Cofre criado");renderCofre();renderTudo()}
+      catch(e){toast("Não consegui criar o cofre neste aparelho.",4000);ok.disabled=false;ok.textContent="Criar cofre"}
+    });
+    box.append(topo("Novo cofre"),el("p",{cls:"md",text:"Os registros do cofre ficam criptografados neste aparelho. Os nomes que você der aqui também ficam guardados dentro dele."}),
+      el("div",{cls:"pers"},[el("div",null,[el("label",{cls:"lbl",for:"cfAtv",text:"Nome da atividade"}),at]),el("div",null,[el("label",{cls:"lbl",for:"cfAtr",text:"Nome do atributo"}),ab]),
+      el("div",null,[el("label",{cls:"lbl",for:"cfS1",text:"Senha de recuperação"}),s1]),el("div",null,[el("label",{cls:"lbl",for:"cfS2",text:"Repita a senha"}),s2]),
+      el("p",{cls:"md",text:"Mínimo de 8 caracteres. Guarde a senha num gerenciador de senhas: sem ela não há como recuperar o conteúdo."}),ok]));
+    return;
+  }
+  /* trancado */
+  if(!cofreAberto()){
+    const kids=[topo("Cofre")];
+    if(c.face&&suportaPasskey()){const fb=el("button",{cls:"btn pri",type:"button",text:"Abrir com Face ID"});
+      fb.addEventListener("click",async()=>{try{await abrirComFaceID();renderCofre();renderTudo()}catch(e){toast("Face ID não abriu o cofre. Use a senha.",3500)}});kids.push(fb)}
+    const s=el("input",{cls:"inp",type:"password",id:"cfSenha",autocomplete:"current-password"});
+    const sb=el("button",{cls:"btn"+(c.face&&suportaPasskey()?"":" pri"),type:"button",text:"Abrir com senha"});
+    const ir=async()=>{if(!s.value)return;sb.disabled=true;try{await abrirComSenha(s.value);renderCofre();renderTudo()}catch(e){toast(e.message==="senha"?"Senha incorreta":"Não consegui abrir o cofre",3000);sb.disabled=false}};
+    sb.addEventListener("click",ir);s.addEventListener("keydown",e=>{if(e.key==="Enter")ir()});
+    kids.push(el("div",{cls:"pers"},[el("div",null,[el("label",{cls:"lbl",for:"cfSenha",text:"Senha"}),s]),sb]));
+    box.append(...kids);return;
+  }
+  /* aberto */
+  const D=COFRE.dados,cfg=D.config,R=motor();
+  const tr=el("button",{cls:"btn sm",type:"button",text:"Trancar"});tr.addEventListener("click",()=>{trancarCofre();COFRE.ui=false;renderCofre();toast("Cofre trancado")});
+  box.append(topo(cfg.atividade,[tr]));
+  const H=dn(hoje()),mesAt=hoje().slice(0,7);
+  const doMes=D.itens.filter(i=>i.data.slice(0,7)===mesAt);
+  const ult8=D.itens.filter(i=>dn(i.data)>H-56).length/8;
+  const A=R.attrs.carisma;
+  box.appendChild(el("div",{cls:"tiles"},[
+    [String(doMes.length),"registros neste mês"],[num(ult8,1),"por semana (8 semanas)"],[A?String(Math.round(A.v)):"—",cfg.atributo],[num(doMes.reduce((a,i)=>a+unidadesCofre(i),0)*ATTR.resist.g,1),"pontos de Resistência no mês (aprox.)"]
+  ].map(t=>el("div",{cls:"tile"},[el("div",{cls:"v",text:t[0]}),el("div",{cls:"k",text:t[1]})]))));
+  /* formulário */
+  const E=COFRE.edit||{data:hoje(),min:"",int:"moderada",nota:null,obs:""};
+  const dI=el("input",{cls:"inp",type:"date",id:"cfData"});dI.value=E.data;
+  const mI=el("input",{cls:"inp",type:"text",inputmode:"numeric",id:"cfMin",placeholder:"ex.: 30"});mI.value=fin(E.min);
+  const segI=el("div",{cls:"seg"});Object.keys(INTENS).forEach(k=>{const b=el("button",{type:"button","aria-pressed":String(E.int===k),text:INTENS[k][0]});b.addEventListener("click",()=>{E.int=k;[...segI.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b)))});segI.appendChild(b)});
+  const segN=el("div",{cls:"seg"});[1,2,3,4,5].forEach(n=>{const b=el("button",{type:"button","aria-pressed":String(E.nota===n),text:String(n)});b.addEventListener("click",()=>{E.nota=E.nota===n?null:n;[...segN.children].forEach((x,i)=>x.setAttribute("aria-pressed",String(E.nota===i+1)))});segN.appendChild(b)});
+  const oI=el("textarea",{id:"cfObs"});oI.value=E.obs||"";
+  const sv=el("button",{cls:"btn pri",type:"button",text:E.id?"Salvar alterações":"Registrar"});
+  sv.addEventListener("click",async()=>{
+    const min=pn(mI.value);if(!dI.value||!(min>0)){toast("Informe data e duração");return}
+    const reg={id:E.id||novoId(),data:dI.value,min,int:E.int,nota:E.nota,obs:oI.value.trim()};
+    const antes=motor();D.itens=D.itens.filter(i=>i.id!==reg.id).concat([reg]);
+    if(await gravarCofre()){const depois=motor();COFRE.edit=null;renderCofre();renderTudo();
+      const a1=antes.attrs.carisma?Math.round(antes.attrs.carisma.v):0,a2=depois.attrs.carisma?Math.round(depois.attrs.carisma.v):0;
+      toast("Registrado"+(a2>a1?"\n"+cfg.atributo+" "+a1+" → "+a2:""),3500)}
+  });
+  const cx=E.id?el("button",{cls:"btn ghost",type:"button",text:"Cancelar edição"}):null;if(cx)cx.addEventListener("click",()=>{COFRE.edit=null;renderCofre()});
+  box.appendChild(el("section",null,[el("h2",{text:E.id?"Editar registro":"Novo registro"}),el("div",{cls:"pers"},[
+    el("div",{cls:"row2"},[el("div",null,[el("label",{cls:"lbl",for:"cfData",text:"Data"}),dI]),el("div",null,[el("label",{cls:"lbl",for:"cfMin",text:"Duração (min)"}),mI])]),
+    el("div",null,[el("span",{cls:"lbl",text:"Intensidade"}),segI]),
+    el("div",null,[el("span",{cls:"lbl",text:"Nota (opcional)"}),segN]),
+    el("div",null,[el("label",{cls:"lbl",for:"cfObs",text:"Observação (opcional)"}),oI]),
+    el("div",{cls:"acoes",style:"margin-top:0"},[sv,cx])
+  ])]));
+  /* lista */
+  const lst=el("div",{cls:"lista"});
+  D.itens.slice().sort((a,b)=>b.data.localeCompare(a.data)).forEach(i=>{
+    const ed=el("button",{cls:"btn sm",type:"button",text:"Editar"});ed.addEventListener("click",()=>{COFRE.edit=Object.assign({},i);renderCofre();$("#cofreSheet").scrollTo(0,0)});
+    const de=el("button",{cls:"btn sm danger",type:"button",text:"Excluir"});armar(de,"Confirmar",async()=>{D.itens=D.itens.filter(x=>x.id!==i.id);await gravarCofre();renderCofre();renderTudo()});
+    lst.appendChild(el("article",{cls:"card"},[el("div",{cls:"h"},[el("span",{cls:"d",text:fmtData(i.data)}),el("span",{cls:"dur",text:num(i.min,0)+" min"})]),
+      el("div",{cls:"chips"},[el("span",{cls:"chip",text:(INTENS[i.int]||INTENS.moderada)[0]}),i.nota?el("span",{cls:"chip",text:"Nota "+i.nota+"/5"}):null]),
+      i.obs?el("div",{cls:"obs",text:i.obs}):null,el("div",{cls:"act"},[ed,de])]));
+  });
+  if(!D.itens.length)lst.appendChild(el("div",{cls:"vazio"},[el("b",{text:"Nenhum registro ainda"}),el("span",{text:"O primeiro registro faz o atributo aparecer na ficha do personagem enquanto o cofre estiver aberto."})]));
+  box.appendChild(el("section",null,[el("h2",{text:"Registros"}),lst]));
+  /* configurações */
+  const nA=el("input",{cls:"inp",type:"text",id:"cfNA",maxlength:"30"});nA.value=cfg.atividade;
+  const nB=el("input",{cls:"inp",type:"text",id:"cfNB",maxlength:"20"});nB.value=cfg.atributo;
+  const svN=el("button",{cls:"btn",type:"button",text:"Salvar nomes"});svN.addEventListener("click",async()=>{cfg.atividade=nA.value.trim()||cfg.atividade;cfg.atributo=nB.value.trim()||cfg.atributo;await gravarCofre();renderCofre();renderTudo();toast("Nomes atualizados")});
+  const p1=el("input",{cls:"inp",type:"password",id:"cfP1",autocomplete:"new-password"}),p2=el("input",{cls:"inp",type:"password",id:"cfP2",autocomplete:"new-password"});
+  const svP=el("button",{cls:"btn",type:"button",text:"Trocar senha"});svP.addEventListener("click",async()=>{if(p1.value.length<8){toast("Mínimo de 8 caracteres");return}if(p1.value!==p2.value){toast("As senhas não conferem");return}svP.disabled=true;try{await trocarSenha(p1.value);p1.value="";p2.value="";toast("Senha trocada")}catch(e){toast("Não consegui trocar a senha")}svP.disabled=false});
+  const face=[];
+  if(c.face){const off=el("button",{cls:"btn",type:"button",text:"Desativar Face ID"});armar(off,"Confirmar",()=>{const cc=cofreSalvo();cc.face=null;gravarLS(LS_C,cc);renderCofre();toast("Face ID desativado. A chave continua no app Senhas e pode ser apagada lá.",4500)});face.push(el("p",{cls:"md",text:"Face ID ativo neste aparelho."}),off)}
+  else if(suportaPasskey()){const on=el("button",{cls:"btn",type:"button",text:"Ativar Face ID"});on.addEventListener("click",async()=>{on.disabled=true;try{await ativarFaceID();toast("Face ID ativado");renderCofre()}catch(e){on.disabled=false;toast(e&&e.message==="prf"?"Este iPhone não liberou o Face ID para criptografia aqui. Continue usando a senha.":"Face ID cancelado ou indisponível.",5000)}});face.push(el("p",{cls:"md",text:"Abra o cofre olhando para o celular. A senha continua valendo como recuperação."}),on)}
+  else face.push(el("p",{cls:"md",text:"O Face ID só funciona com o app aberto pelo endereço https (GitHub Pages)."}));
+  const bx=el("button",{cls:"btn",type:"button",text:"Baixar backup do cofre"});bx.addEventListener("click",()=>baixar("cofre-"+hoje()+".json",JSON.stringify({app:"diario-treino-cofre",v:1,cofre:cofreSalvo()})));
+  const im=el("button",{cls:"btn",type:"button",text:"Restaurar backup do cofre"});im.addEventListener("click",()=>$("#cofreFile").click());
+  const apg=el("button",{cls:"btn danger",type:"button",text:"Apagar cofre"});armar(apg,"Tocar de novo apaga tudo",()=>{try{localStorage.removeItem(LS_C);localStorage.removeItem(LS_BR)}catch(e){}trancarCofre();COFRE.ui=true;renderCofre();toast("Cofre apagado")});
+  box.appendChild(el("details",{cls:"cf-cfg"},[el("summary",{text:"Configurações do cofre"}),el("div",{cls:"pers"},[
+    el("div",{cls:"row2"},[el("div",null,[el("label",{cls:"lbl",for:"cfNA",text:"Atividade"}),nA]),el("div",null,[el("label",{cls:"lbl",for:"cfNB",text:"Atributo"}),nB])]),svN,
+    el("h3",{text:"Senha de recuperação"}),el("div",{cls:"row2"},[el("div",null,[el("label",{cls:"lbl",for:"cfP1",text:"Nova senha"}),p1]),el("div",null,[el("label",{cls:"lbl",for:"cfP2",text:"Repita"}),p2])]),svP,
+    el("h3",{text:"Face ID"})].concat(face).concat([
+    el("h3",{text:"Backup"}),el("p",{cls:"md",text:"O backup do cofre sai criptografado e só abre com a senha. Ele é separado do backup geral do app."}),el("div",{cls:"dados"},[bx,im]),
+    el("h3",{text:"Zona de perigo"}),apg]))]));
+}
+$("#cofreFile").addEventListener("change",async e=>{
+  const f=e.target.files&&e.target.files[0];e.target.value="";if(!f)return;
+  try{const j=JSON.parse(await f.text());const c=j&&j.cofre;if(j.app!=="diario-treino-cofre"||!c||!c.wrapS||!c.dados||!c.salt)throw new Error();
+    if(!gravarLS(LS_C,c))throw new Error();trancarCofre();COFRE.ui=true;renderCofre();toast("Cofre restaurado. Abra com a senha.",3500)}
+  catch(err){toast("Arquivo de backup do cofre inválido.",3500)}
+});
+
 /* ---------- Abas ---------- */
 const VIEWS=["heroi","treino","corpo","historico","resumo"];
 function mostrar(v){if(!VIEWS.includes(v))v="treino";VIEWS.forEach(x=>{$("#v-"+x).hidden=x!==v;$("#tab-"+x).setAttribute("aria-selected",String(x===v))})}
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{mostrar(b.dataset.v);window.scrollTo(0,0)}));
-function renderTudo(){atualizarNomes();const R=motor();renderHeroi(R);renderLista(R);renderResumo();renderCorpo()}
+function renderTudo(){atualizarNomes();const R=motor();renderHeroi(R);renderLista(R);renderResumo();renderCorpo();renderExames()}
 
 /* ---------- Início ---------- */
 atualizarNomes();
